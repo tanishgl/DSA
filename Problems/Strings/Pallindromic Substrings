@@ -1,0 +1,8 @@
+Input : - You are given a string.
+Process : - Find out all the pallindromic substrings of the input string.
+Output : - Print all the pallindromic substrings found.
+Constraints : - NA
+
+Example : - 
+  Input : - abba
+  Output : - a, abba, b, bb, b, a 
