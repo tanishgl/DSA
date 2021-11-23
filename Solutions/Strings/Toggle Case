@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main{
+  public static void main(String[] args){
+    Scanner in = new Scanner(System.in);
+    String input = in.nextLine();
+    String output = toggleCase(input);
+    System.out.println(output);
+   }
+   
+   public static String toggleCase(String str){
+    String res = "";
+    for(int i=0;i<str.length();i++){
+      char ch = str.charAt(i);
+      if(ch>=65 && ch<=90){
+        //It's an uppercase character. Convert it to lowercase.
+        res += (char)(ch+32);
+      } else if (ch>=97 && ch<=122){
+        //It's a lowercase character. Convert it to uppercase.
+        res += (char)(ch-32);
+      }
+     }
+     
+     return res;
+   }
+  
+}
