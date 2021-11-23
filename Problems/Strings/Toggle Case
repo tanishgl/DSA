@@ -1,0 +1,9 @@
+Input : - You are given a string composed of only lowercase and uppercase letters. 
+Process : - Toggle the case of each character of the string (i.e. Lowercase -> Uppercase and vice-versa)
+Output : - Print the resultant case-toggled string.
+
+Constraints : - NA
+
+Example : - 
+  Input : - abcDEfGHiJKlmnoPQRstUvWxyZ
+  Output : - ABCdeFghIjkLMNOpqrSTuVwXYz
