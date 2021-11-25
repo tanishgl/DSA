@@ -1,0 +1,136 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[][] mat = new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                mat[i][j] = in.nextInt();
+            }
+        }
+        int s = in.nextInt();
+        int r = in.nextInt();
+        ringRotate(mat,s,r);
+        display(mat);
+    }
+
+    public static void ringRotate(int[][] mat, int s, int r){
+        //frow, fcol are (x,y) coordinates of the ring's upper-left corner.
+        //lrow, lcol are (x,y) coordinates of the ring's bottom-right corner.
+        
+        int frow = s-1;
+        int fcol = s-1;
+        int lrow = mat.length-s;
+        int lcol = mat[0].length-s;
+        int ring_count = (lrow-frow+1)*2 + (lcol-fcol+1)*2 - 4;
+        int[] ring = new int[ring_count];
+        int j = 0;
+        
+        //Traverse from (frow,fcol) towards the entire ring and store the ring in a 1D-Array.
+        for(int i=frow;i<=lrow;i++){
+            ring[j] = mat[i][fcol];
+            j++;
+        }
+
+        fcol++;
+
+        for(int i=fcol;i<=lcol;i++){
+            ring[j] = mat[lrow][i];
+            j++;
+        }
+
+        lrow--;
+
+        for(int i=lrow;i>=frow;i--){
+            ring[j] = mat[i][lcol];
+            j++;
+        }
+
+        lcol--;
+
+        for(int i=lcol;i>=fcol;i--){
+            ring[j] = mat[frow][i];
+            j++;
+        }
+
+        // 1D-Array is filled and ready to be rotated.
+        rotate(ring, r);
+
+        // Reset the corner variables.
+        frow = s-1;
+        fcol = s-1;
+        lrow = mat.length-s;
+        lcol = mat[0].length-s;
+
+        j = 0;
+
+        // Traverse the ring again to fill it with newly-rotated 1D "ring" Array.
+        for(int i=frow;i<=lrow;i++){
+            mat[i][fcol] = ring[j];
+            j++;
+        }
+
+        fcol++;
+
+        for(int i=fcol;i<=lcol;i++){
+            mat[lrow][i] = ring[j];
+            j++;
+        }
+
+        lrow--;
+
+        for(int i=lrow;i>=frow;i--){
+            mat[i][lcol] = ring[j];
+            j++;
+        }
+
+        lcol--;
+
+        for(int i=lcol;i>=fcol;i--){
+            mat[frow][i] = ring[j];
+            j++;
+        }
+        
+    }
+
+    public static void display(int[][] arr){
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 0; j < arr[0].length; j++){
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
+    public static void rotate(int[] arr, int k){
+        k = k%arr.length;
+        if(k<0){
+            k+=arr.length;
+        }
+        int n = arr.length;
+        reverse(arr,0,n-k-1);
+        reverse(arr,n-k,n-1);
+        reverse(arr,0,n-1);
+
+    }
+
+    public static void reverse(int[] arr, int i, int j){
+        int a = i;
+        int b = j;
+        while(a<b){
+            int temp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = temp;
+            a++;
+            b--;
+        }
+    }
+
+}
