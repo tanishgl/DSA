@@ -1,0 +1,22 @@
+Input :- (i) N*M matrix. N = No. of rows, M = No. of columns
+         (ii) An integer s which means the ring number.
+         (iii) An integer r which means the number of rotations in anti-clockwise direction.
+         
+Process :- Think of the matrix as a set of concentric circles, going from outer circle (starting from (0,0)) to inside. 
+           Illustration :-
+           
+                            a b c d e f g
+                            h i j k l m n
+                            o p q r s t u 
+                            v w x y z A F
+           
+          First Ring :-     a -> h -> o -> v -> w -> x -> y -> z -> A -> F -> u -> n -> g -> f -> e -> d -> c -> b 
+          Second Ring :-    i -> p -> q -> q -> r -> s -> t -> m -> l -> k -> j
+          
+          You have to rotate the s'th ring by r times in anti-clockwise direction.
+ 
+ Output :- Print the resultant matrix.
+ 
+ Constraints :- NA
+ 
+ Note :- Above illustration is just for understanding purpose. In the solution, it is assumed that the matrix consists of only integer data type.
