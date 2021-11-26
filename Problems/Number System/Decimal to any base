@@ -1,0 +1,10 @@
+Input :- An Integer of base 10 and a base 'b'.
+Process :- Convert the number to a destination base 'b'.
+Output :- Print the input equivalent in base 'b'.
+Constraints :- NA
+
+Example :- 
+  
+          input n = 10
+          base b = 2
+          output = 1010
