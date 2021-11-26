@@ -1,0 +1,13 @@
+Input :- A number n, it's base or source base, and destination base.
+Process :- Convert the number from it's base to it's destination-base equivalent.
+Output :- Print the destination-base number.
+
+example :- 
+
+          Input :-
+          n = 111001
+          src_base = 2
+          dest_base = 3
+          
+          Output :-
+          2010
