@@ -1,0 +1,13 @@
+Input :- A base b, int n1 of base 'b', int n2 of base 'n2'
+Process :- Subtract n1 from n2 (Assume or validate that n2 >= n1).
+Output :- Print the difference i.e. n2 - n1.
+
+Example :- 
+
+            Input :-
+            Base b = 8
+            int n1 = 1
+            int n2 = 100
+            
+            Output :- 
+            77
