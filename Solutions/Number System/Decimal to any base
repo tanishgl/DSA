@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int b = in.nextInt();
+        int output = decimalToBase(n,b);
+        System.out.println(output);
+    }
+    
+    public static int decimalToBase(int n, int b){
+        int res = 0;
+        
+        //multiplier i
+        int i = 1;
+        
+        while(n>0){
+            int rem = n/b;
+            res += (rem*i);
+            i*=10;
+            n/=10;
+        }
+        return res;
+   
+    }
+   }
