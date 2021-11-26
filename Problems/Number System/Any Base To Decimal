@@ -1,0 +1,9 @@
+Input :- A number n and it's base 'b'.
+Process :- convert the number of base 'b' to decimal. (i.e. base 10)
+Output :- Print the decimal equivalent of the b-base number.
+
+Example :-
+  
+          Input n = 100
+          Base b = 2
+          Output = 4
