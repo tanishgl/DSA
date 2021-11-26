@@ -1,0 +1,13 @@
+Input :- A base b, an integer n1 of base 'b', an integer n2 of base 'b'.
+Process :- Add n1 and n2
+Output :- Print the sum of n1 and n2.
+
+Example :- 
+        
+           Input :-
+           Base b = 8
+           int n1 = 777
+           int n2 = 1
+           
+           Output :-
+           1000
