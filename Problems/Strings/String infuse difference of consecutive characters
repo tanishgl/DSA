@@ -1,0 +1,15 @@
+Input :- A string composed of only lowercase and uppercase letters.
+
+Process :- Between each pair of characters in the string, you have to add a new digit which corresponds to the difference of the later character and former character.
+
+Output :- Print the newly character-difference infused string.
+
+Constraints :- NA
+
+Example :- String = aAce
+  
+            'A'-'a' = -32
+            'c'-'A' = 34
+            'e'-'c' = 2
+            
+            Output :- a-32A34c2e
