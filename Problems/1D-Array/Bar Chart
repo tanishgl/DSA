@@ -1,0 +1,20 @@
+Input :- A number n,
+         n1,n2,....n integers
+Process :- Create a bar chart (Illustrated below)
+Output :- Print the bar chart.
+
+Example :-
+
+          Input :-
+          n = 5
+          arr = [1,5,6,2,3]
+          
+          Output:-
+          
+             *   
+           * *   
+           * *   
+           * *   *
+           * * * *
+         * * * * *
+          
