@@ -1,0 +1,13 @@
+Input :- Base 'b', an integer n1, and an integer n2. (Both n1 and n2 are in base 'b')
+Process :- Multiply n1 and n2.
+Output :- Print n1 x n2.
+
+Example :- 
+
+            Input :-
+            Base b = 5
+            int n1 = 1220
+            int n2 = 31
+            
+            Output :-
+            43320
