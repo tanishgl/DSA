@@ -1,0 +1,15 @@
+Input :- A number n 
+         n1,n2,.....n Integers representing elements of an array
+         An integer d 
+Process :- Find the index of d in array. 
+Output :- If d is found print it's index, else -1.
+
+Example :- 
+
+          Input :-
+          n = 6
+          array = [33, 83, 29, 10, 1, 99]
+          d = 29
+          
+          Output :-
+          2
