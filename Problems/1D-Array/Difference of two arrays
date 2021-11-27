@@ -1,0 +1,17 @@
+Input :- A number n1
+         n1 number of elements line separated (arr 1 elements)
+         A number n2
+         n2 number of elements line separated (arr 2 elements)
+Process :- Do arr 2 - arr 1 and store the result in a new array.
+Output :- Print the resultant array.
+
+Example :-
+
+          Input :-
+          n1 = 5
+          arr 1 = [5,9,2,3,8]
+          n2 = 4
+          arr 2 = [2,7,9,6]
+          
+          Outpu :-
+          arr 3 = [5,6,4,4,2]
