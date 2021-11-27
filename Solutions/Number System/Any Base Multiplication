@@ -1,0 +1,89 @@
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int b = scn.nextInt();
+    int n1 = scn.nextInt();
+    int n2 = scn.nextInt();
+
+    int d = getProduct(b, n1, n2);
+    System.out.println(d);
+ }
+
+ public static int getProduct(int b, int n1, int n2){
+ 
+      int fans = 0;    //final answer
+      int j = 0;       //counter variable for n1 (Assuming that n1 appears at the bottom i.e. n2 x n1)
+      
+      //I want n2 < n1, i.e. n1 at the top and n2 at bottom.
+      if(n1<n2){
+         int temp = n1;
+         n1 = n2;
+         n2 = temp;
+     }
+      
+      while (n2>0){
+          int d1 = n1%10;
+          int ans = 0;
+          int carry = 0;
+          int i = (int)Math.pow(10,j);
+          int temp = n2;
+          while(temp>0){
+                int d2 = temp%10;
+                int mul = d1 * d2 + carry;
+                int rem = mul%b;
+                carry = mul/b;
+                ans = ans + rem*i;
+                i*=10;
+                temp/=10;
+         }
+         j++;
+         fans = anyBaseAddition(b, ans, fans);
+         n2/=10;
+    }
+    
+    return fans;
+ }
+ 
+ public static int anyBaseAddition(int b, int x, int y){
+ 
+            if(y==0) return x;      //Optional Base case.
+            int res = 0;
+            int i = 1;
+            int carry = 0;
+            while(carry>0 || x>0 || y>0){
+                    int d1 = x%10;
+                    int d2 = y%10;
+                    int sum = d1 + d2 + carry;
+                    int rem = sum%b;
+                    carry = sum/b;
+                    res = res + rem*i;
+                    i*=10;
+                    x/=10;
+                    y/=10;
+            }
+            
+            return res;
+   }
+ 
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+    
