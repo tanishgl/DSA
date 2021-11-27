@@ -1,0 +1,15 @@
+Input :- A number n 
+         n1,n2,.....n Integers representing elements of an array
+Process :- Find the span of the array. 
+Output :- Print the span of the array.
+
+Pre-requisite :- Span of the array is the difference between the largest and smallest element of the array.
+
+Example :- 
+
+          Input :-
+          n = 6
+          array = [33, 83, 29, 10, 1, 99]
+          
+          Output :-
+          span = 99-1 = 98
