@@ -5,6 +5,8 @@ Input :- A number n1
 Process :- Do arr 2 - arr 1 and store the result in a new array.
 Output :- Print the resultant array.
 
+Assumption :- a2 >= a1
+
 Example :-
 
           Input :-
