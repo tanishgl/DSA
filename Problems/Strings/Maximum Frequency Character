@@ -1,0 +1,8 @@
+Input :- A string s
+Process :- Find the character with maximum frequency.
+Output :- Print the frequency of that character with maximum frequency.
+
+Example :- 
+
+        Input :- aabbbccccccc
+        Output :- c
