@@ -1,0 +1,11 @@
+Input :- A string s
+Process :- Find if the string is funny or not.
+Output :- If funny, print "Funny" else "Not Funny".
+
+What is Funny String ? :- To determine whether a string is funny, create a copy of the string in reverse e.g. . Iterating through each string, compare the absolute difference in the ascii values of the characters at positions 0 and 1, 1 and 2 and so on to the end. If the list of absolute differences is the same for both strings, they are funny.
+
+Example :-
+
+        Input :- "lmnop"
+        Process :- The ordinal values of the charcters are [108,109,110,111,112]. Reverse string is "ponml" whose ordinal values are [112,111,110,109,108]. The absolute differences of the adjacent elements for both strings are [1,1,1,1], so the answer is Funny.
+        Output :- "Funny"
