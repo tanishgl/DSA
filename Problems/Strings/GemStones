@@ -1,0 +1,12 @@
+There is a collection of rocks where each rock has various minerals embeded in it. Each type of mineral is designated by a lowercase letter in the range ascii[a-z]. 
+There may be multiple occurrences of a mineral in a rock. A mineral is called a gemstone if it occurs at least once in each of the rocks in the collection.
+Given a list of minerals embedded in each of the rocks, display the number of types of gemstones in the collection.
+
+Input :- integer n (no. of rocks), followed by n lines containing a string arr[i] where each letter represents an occurence of a mineral in the current rock.
+Output :- Print the number of gemstones.
+
+Example :- 
+
+        Input :- ['abc','abc','bc'];
+        Output :- 2
+        Brief :- In above 3 rocks, Mineral 'a' occurs in only 2 rocks whereas Mineral 'b' and 'c' occur in all rocks. Hence, 2 gemstones 'b' and 'c'.
