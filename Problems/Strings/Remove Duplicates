@@ -1,0 +1,8 @@
+Input :- String s 
+Process :- Remove the duplicate characters in the string s.
+Output :- Print the resultant string.
+
+Example :-
+
+          Input :- abacdeabdghijg
+          Output :- abcdeghij
