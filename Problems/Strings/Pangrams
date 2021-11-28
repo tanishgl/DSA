@@ -1,0 +1,13 @@
+Input :- A string s
+Process :- Find if the string is a pangram.
+Output :- If yes print "Pangram", else print "Not Pangram".
+
+What is a Pangram ? :- A pangram is a string which has all the 26 english letters in it.
+
+Example :-
+
+      Input :- We promptly judged antique ivory buckles for the next prize
+      Output :- Pangram
+      
+      Input :- We promptly judged antique ivory buckles for the prize
+      Output :- Not Pangram
