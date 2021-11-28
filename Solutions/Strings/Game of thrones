@@ -1,0 +1,70 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+    
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        gameOfThrones(str);
+        
+    }
+    
+    public static String gameOfThrones(String s) {
+      
+      String str = remDuplicates(s);
+      
+      int[] arr = new int[str.length()];
+      for(int i=0;i<s.length();i++){
+          arr[i] = occ(s,str.charAt(i));
+      }
+      
+      int even = 0;
+      int odd = 0;
+      
+      for(int i=0;i<arr.length;i++){
+          if(arr[i]%2==0){
+              even++;
+          } else {
+              odd++;
+          }
+      }
+      
+      if(odd<=1 && even>0){
+          System.out.println("YES");
+      } else {
+          System.out.println("NO");
+      }
+   }
+    
+    public static String remDuplicates(String str){
+        StringBuilder s = new StringBuilder(str);
+        
+        for(int i=0;i<s.length()-1;i++){
+            char ch = s.charAt(i);
+            if(i==s.length()-1) break;
+            for(int j=i+1;j<s.length();j++){
+                char uch = s.charAt(j);
+                if(ch==uch){
+                    s.deleteCharAt(j);
+                    j--;
+                }
+            }
+        }
+        
+        String str1 = s.toString();
+        return str1;
+    }
+    
+    public static int occ(String str, char ch){
+        int oc = 0;
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i)==ch){
+                oc++;
+            }
+        }
+        return oc;
+    }
+    
+ 
+ }
+        
