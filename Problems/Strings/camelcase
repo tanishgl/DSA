@@ -1,0 +1,11 @@
+Input :- String s in camelcase.
+Process :- Find out the number of words in the string.
+Output :- Print the number of words.
+
+What is camelcase ? :- All letters in the first word are lowercase. For each of the subsequent words, the first letter is uppercase and rest of the letters are lowercase.
+
+Example :-
+
+          Input :- saveChangesInTheEditor
+          Output :- 5
+          Brief :- save, Changes, In, The, Editor comprising 5 words. 
