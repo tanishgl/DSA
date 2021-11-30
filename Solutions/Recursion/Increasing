@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class Main{
+  public static void main(String[] args)[
+      Scanner in = new Scanner(System.in);
+      int n = in.nextInt();
+      inc(n);
+  }
+  
+  public static void inc(int n){
+    //Base Case
+    if(n==0) return;
+    
+    //Faith
+    inc(n-1);
+    
+    //Work
+    System.out.println(n);
+ }
+ 
+}
