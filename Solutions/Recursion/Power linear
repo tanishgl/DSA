@@ -6,6 +6,7 @@ public class Main{
       int n = in.nextInt();
       int x = in.nextInt();
       int ans= powerLinear(x,n);
+      System.out.println(ans);
   }
   
   public static int powerLinear(int x, int n){
