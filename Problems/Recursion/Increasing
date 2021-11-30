@@ -1,0 +1,16 @@
+Input :- An Integer n
+Process :- Print 1 to n in increasing order.
+Output :-  1 2 3 ... n 
+Note :- Print each digit on a new line.
+
+Example :-
+
+        Input :-
+        n = 5
+        
+        Output :-
+        1
+        2
+        3
+        4
+        5
