@@ -1,0 +1,14 @@
+Input :- An Integer x and an integer n.
+Process :- Illustrated below.
+Output :-  print as illustrated below.
+
+Example :-
+
+        Input :-                                      Input :-                                              Input :- 
+        n = 1                                         n = 2                                                 n = 3
+        
+        Output :-                                     Output :-                                             Output :-
+        1 1 1                                         2 1 1 1 2 1 1 1 2                                     3 2 1 1 1 2 1 1 1 2 3 2 1 1 1 2 1 1 1 2 3
+        
+        
+       
