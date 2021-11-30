@@ -1,0 +1,11 @@
+Input :- An Integer n
+Process :- Find out the factorial of n.
+Output :-  print n!
+
+Example :-
+
+        Input :-
+        n = 5
+        
+        Output :-
+        120
