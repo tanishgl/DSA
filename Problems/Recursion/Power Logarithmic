@@ -1,0 +1,12 @@
+Input :- An Integer x and an integer n.
+Process :- Find out x raised to the power n.
+Output :-  print (x)^n
+Note :- x is base and is raised to nth power. (Figure out the solution that runs in logarithmic complexity i.e. O(log n). )
+Example :-
+
+        Input :-
+        x = 2
+        n = 5
+        
+        Output :-
+       32
