@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class Main{
+  public static void main(String[] args)[
+      Scanner in = new Scanner(System.in);
+      int n = in.nextInt();
+      dec(n);
+  }
+  
+  public static void dec(int n){
+      //Base Case 
+      if(n==0) return;
+      
+      //Work
+      System.out.println(n);
+     
+      //Faith
+      dec(n-1);
+  }
+  
+}
