@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main{
+  
+    public static void main(String[] args){
+      
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();               //No. of discs
+        int src = in.nextInt();             //Source tower
+        int dest = in.nextInt();            //Destination tower
+        int aux = in.nextInt();             // Auxillary Tower
+        toh(n,src,dest,aux);
+    }
+    
+    public static void toh(int n, int src, int dest, int aux){
+           //Base Case
+           if(n==0) return;
+           
+           //Move n-1 discs from source to auxillary using destination.
+           toh(n-1,src,aux,dest);
+           
+           //Meet expectation with faith. i.e. Move the nth disc from source to destination.
+           System.out.println(n+"["+src+" -> "+ dest+"]");
+           
+           //Move n-1 discs from auxillary to destination via source.
+           toh(n-1,aux,dest,src);
+           
+     }
+     
+}
+           
+           
