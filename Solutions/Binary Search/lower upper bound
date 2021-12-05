@@ -1,50 +1,61 @@
-Class Solution{
+import java.util.*;
+
+class Bounds{
 	
 	public static void main(String[] args){
+		
+		int[] arr = {10,10,10,20,20,40,40,40,50,50};		
+		int lb = lowerBound(arr,5);
+		int ub = upperBound(arr,5);
+		System.out.println(lb);
+		System.out.println(ub);
 	
-		int[] arr = {1,1,1,2,2,4,4,4,5,5};
-		int target = 3;
-		int lb = lowerBount(arr,target);
-		int ub = upperBound(arr,target);
 	}
 
-	public static int lowerBound(int[] arr, int d){
+	public static int lowerBound(int[] arr, int target){
+		
 		int l = 0;
 		int r = arr.length-1;
 		int ans = 0;
 		
 		while(l<=r){
 			int m = l + (r-l) / 2;
-			if(arr[m]==d){
+			if(arr[m]==target){
 				ans = m;
 				r = m - 1;
-			} else if (arr[m]>d){
+			} else if (arr[m]>target){
 				r = m - 1;
 			} else {
 				l = m + 1;
 			}
 		}
 
-		return ans;
+		if(ans!=0){
+			return ans;
+		} else {
+			return l;
+		}
 	}
 
-	public static int lowerBound(int[] arr, int d){
+	public static int upperBound(int[] arr, int target){
+		
 		int l = 0;
 		int r = arr.length-1;
-		int ans = arr.length;
 		
 		while(l<=r){
-			int m = l + (r-l) / 2;
-			if(arr[m]<=d){
+			int m = l + (r-l) /2;
+			if(arr[m]<=target){	
 				l = m + 1;
 			} else {
 				r = m - 1;
 			}
 		}
 
-		return ans;
+		return l;
 	}
 
 }
+	
+		
 
 		
