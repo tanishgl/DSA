@@ -1,0 +1,50 @@
+Class Solution{
+	
+	public static void main(String[] args){
+	
+		int[] arr = {1,1,1,2,2,4,4,4,5,5};
+		int target = 3;
+		int lb = lowerBount(arr,target);
+		int ub = upperBound(arr,target);
+	}
+
+	public static int lowerBound(int[] arr, int d){
+		int l = 0;
+		int r = arr.length-1;
+		int ans = 0;
+		
+		while(l<=r){
+			int m = l + (r-l) / 2;
+			if(arr[m]==d){
+				ans = m;
+				r = m - 1;
+			} else if (arr[m]>d){
+				r = m - 1;
+			} else {
+				l = m + 1;
+			}
+		}
+
+		return ans;
+	}
+
+	public static int lowerBound(int[] arr, int d){
+		int l = 0;
+		int r = arr.length-1;
+		int ans = arr.length;
+		
+		while(l<=r){
+			int m = l + (r-l) / 2;
+			if(arr[m]<=d){
+				l = m + 1;
+			} else {
+				r = m - 1;
+			}
+		}
+
+		return ans;
+	}
+
+}
+
+		
