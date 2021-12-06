@@ -13,6 +13,8 @@ class Bounds{
 	}
 
 	public static int lowerBound(int[] arr, int target){
+	
+	//lowerbound refers to the index of the first occurrence of the target in the array (if it exists) or the index of the first larger value than the target.
 		
 		int l = 0;
 		int r = arr.length-1;
@@ -38,6 +40,8 @@ class Bounds{
 	}
 
 	public static int upperBound(int[] arr, int target){
+	
+	//upperBound is similar to ceil. It refers to the index of the value which is just larger than the target.
 		
 		int l = 0;
 		int r = arr.length-1;
