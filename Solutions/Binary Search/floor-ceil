@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class Main{
+  
+    public static void main(String[] args){
+      
+        int[] arr = {10,20,20,40,40,40,50,50};
+        int target = 30;
+        int ans_floor = floor(arr,target);
+        int ans_ceil = floor(arr,target);
+    }
+    
+    public static int floor(int[] arr, int target){
+        
+         //Floor refers to the value which is just less than the target (but not equal).
+         int l = 0;
+         int r = arr.length-1;
+        
+         while(l<=r){
+            int m = l + (r-l) / 2;
+            if(arr[m]>=target){
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+         }
+         
+         if(r==-1){
+              //Floor doesn't exist.
+              return -1;
+         } else {
+              return arr[r];
+         }
+    }
+    
+    public static int ceil(int[] arr, int target){
+        
+          //Ceil refers to the value which is just greater than the target (but not equal).
+          int l = 0;
+          int r = arr.length-1;
+          
+          while(l<=r){
+              int m = l + (r-l) / 2;
+              if(arr[m]<=target){
+                  l = m + 1;
+              } else {
+                  r = m - 1;
+              }
+          }
+          
+          if(l==arr.length){
+                //ceil doesn't exist.
+                return -1;
+          } else {
+                return arr[l];
+          }
+     }
+     
+}
