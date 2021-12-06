@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] arr = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = in.nextInt();
+        }
+
+        displayArrReverse(arr,n-1);
+    }
+
+    public static void displayArrReverse(int[] arr, int idx) {
+
+        //Base case
+        if(idx<0) return;
+
+        //Work
+        System.out.println(arr[idx]);
+
+        //Faith
+        displayArrReverse(arr,idx-1);
+
+        
+
+    }
+
+}
