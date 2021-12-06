@@ -1,0 +1,38 @@
+Input :-  1. You are given a number n, representing the number of rows.
+          2. You are given a number m, representing the number of columns.
+          3. You are given n*m numbers (1's and 0's), representing elements of 2d array a.
+Process :-  Consider this array a maze and a player enters from top-left corner in east direction.
+            The player moves in the same direction as long as he meets '0'. On seeing a 1, he takes a 90 deg right turn.
+            You are required to print the indices in (row, col) format of the point from where you exit the matrix.
+Output :- Print the exit point of the matrix.
+
+Example :-
+
+            Input :- 
+                  4
+                  4
+                  0 0 1 0 
+                  1 0 0 0
+                  0 0 0 0
+                  1 0 1 0 
+
+             Output:-
+
+                  1
+                  3
+                  
+             Illustration :-
+             
+       START ->   0 -> 0 -> 1    0 
+                            |
+                            v
+                  1 -> 0 -> 0 -> 0 -> EXIT POINT REACHED WE ARE OUT OF MATRIX. EXIT POINT :- (1,3)
+                  ^         |
+                  |         v
+                  0    0    0    0
+                  ^         |
+                  |         v
+                  1 <- 0 <- 1    0 
+                            
+       
+      In above illustration We start from (0,0) and go as per instructions. At each '1', we turn 90 degrees. At each '0', we continue moving in the same direction.
