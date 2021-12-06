@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+/*
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[][] mat = new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                mat[i][j] = in.nextInt();
+            }
+        }
+
+        int frow = 0, fcol = 0, lrow = n-1, lcol = m-1;
+        int count = 0;
+
+        while(count<m*n){
+
+            //Left wall -> top to bottom
+
+            for(int i=frow;i<=lrow;i++){
+                System.out.println(mat[i][fcol]);
+                count++;
+                if(count == m*n){
+                    return;
+                }
+            }
+
+            fcol++;
+
+            //Bottom wall -> left to right
+
+            for(int j=fcol;j<=lcol;j++){
+                System.out.println(mat[lrow][j]);
+                count++;
+                if(count == m*n){
+                    return;
+                }
+            }
+
+            lrow--;
+
+            //Right wall -> bottom to top
+
+             for(int i=lrow;i>=frow;i--){
+                System.out.println(mat[i][lcol]);
+                count++;
+                if(count == m*n){
+                    return;
+                }
+            }
+
+            //Top Wall -> right to left
+
+            lcol--;
+
+            for(int j=lcol;j>=fcol;j--){
+                System.out.println(mat[frow][j]);
+                count++;
+                if(count == m*n){
+                    return;
+                }
+            }
+
+            frow++;
+
+        }
+    } 
+}
