@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[][] mat = new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                mat[i][j] = in.nextInt();
+            }
+        }
+
+
+        int currRow = 0, currCol = 0;
+        int prevRow = 0, prevCol = 0;
+
+        //directions
+        // right -> 0, down -> 1, left -> 2, up -> 3
+
+        int direction = 0;
+
+        while((currCol>=0) && (currRow>=0) && (currRow<n) && (currCol<m)){
+            if(mat[currRow][currCol] == 1){
+                //change the direction
+                direction = (direction+1) % 4;
+            }
+
+            prevRow = currRow;
+            prevCol = currCol;
+
+            if(direction == 0){
+                //Go right
+                currCol++;
+            } else if(direction == 1){
+                //Go Down
+                currRow++;
+            } else if(direction == 2){
+                //Go left
+                currCol--;
+            } else if(direction == 3){
+                //Go UP
+                currRow--;
+            }
+        }
+
+        System.out.println(prevRow);
+        System.out.println(prevCol);
+    }
+
+}
