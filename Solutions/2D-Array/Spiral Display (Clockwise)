@@ -1,0 +1,77 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        int r = in.nextInt();
+        int c = in.nextInt();
+        int[][] mat = new int[r][c];
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                mat[i][j] = in.nextInt();
+            }
+        }
+        
+        clock(mat);  
+    }
+
+  public static void clock(int[][] mat){
+          int r = mat.length;
+          int c = mat[0].length;
+          int fr = 0;
+          int fc = 0;
+          int lr = mat.length-1;
+          int lc = mat[0].length-1;
+          int x = 0;
+
+          while(true){
+              for(int i=fc;i<=lc;i++){
+                  System.out.print(mat[fr][i] + " ");
+                  x++;
+                  if(x==r*c){
+                      return;
+                  }
+              }
+
+              fr++;
+
+              for(int i=fr;i<=lr;i++){
+                  System.out.print(mat[i][lc]+ " ");
+                  x++;
+                  if(x==r*c){
+                      return;
+                  }
+
+              }
+
+              lc--;
+
+              for(int i=lc;i>=fc;i--){
+                  System.out.print(mat[lr][i]+ " ");
+                  x++;
+                  if(x==r*c){
+                      return;
+                  }
+
+              }
+
+              lr--;
+
+              for(int i=lr;i>=fr;i--){
+                  System.out.print(mat[i][fc]+ " ");
+                  x++;
+                  if(x==r*c){
+                      return;
+                  }
+
+              }
+
+              fc++;
+          }
+
+      }
+      
+}
