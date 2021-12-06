@@ -1,0 +1,17 @@
+Input :- Integer representing N
+         Integer representing N numbers.
+Process :- Write a function which returns true if the second array is inverse of first and false otherwise. Print the value returned.
+Output :- Print the boolean output.
+
+Constraints :- N cannot be Negative.
+               0 <= N <= 10^9
+              -10^9 <= Arr[i] <= 10^9
+
+
+Example(To be used only for expected output):
+              Input:
+              4
+              1 2 3 0
+              3 0 1 2
+              Output:
+              true
