@@ -1,0 +1,49 @@
+class Solution{
+  
+    public int[] findEvenNumbers(int[] digits) {
+      
+        //Check if all digits are 0.
+        int zero_flag = 0;
+        for(int i=0;i<digits.length;i++){
+          zero_flag += digits[i];
+        } 
+        
+        if(zero_flag==0){
+            return new int[]{};
+        }
+        
+        //check if all digits are odd.
+        int odd_flag = true;
+        for(int i=0;i<digits.length;i++){
+            if(digits[i]%2==0){
+               odd_flag = false;
+            }
+        }
+        
+        if(odd_flag){
+            return new int[]{};
+        }
+        
+        List<Integer> ans = new ArrayList<>();
+        
+        for(int i=0;i<digits.length;i++){
+           if(digits[i]==0) continue;
+           for(int j=0;j<digits.length;j++){
+             if(j==i) continue;
+             for(int k=0;k<digits.length;k++){
+               if(k==i || k==j || digits[k]%2==1) continue;
+               res.add(digits[i]*100+digits[j]*10+digits[k]);
+             }
+           }
+         }
+         
+        List<Integer> newans = ans.stream().distinct().collect(Collectors.toList());
+        
+        int[] res = new int[newans.size()];
+        for(int i=0;i<res.length;i++){
+            res[i] = newans.get(i);
+        }
+        
+        Arrays.sort(res);
+        return res;
+}
