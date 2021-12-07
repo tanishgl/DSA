@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        ArrayList<String> ans = gss(0,str);
+        System.out.println(ans);
+
+    }
+
+    public static ArrayList<String> gss(int idx, String str) {
+      //Base case
+      if(idx==str.length()){
+          ArrayList<String> base = new ArrayList<>();
+          base.add(""):
+          return base;
+      }
+      
+      //Faith
+      ArrayList<String> res = gss(idx+1, str);
+      
+      //Work
+      ArrayList<String> ans = new ArrayList<String>
+      
+      //For subsequence, the character either doesn't appear.
+      for(String s : res){
+          ans.add(s);
+      }
+      
+      //Or, it comes.
+      for(String s : res){
+          ans.add(str.charAt(idx)+s);
+      }
+      
+      return ans;
+   }
+   
+}
