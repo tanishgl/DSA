@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    static String[] combo = {".;","abc","def","ghi","jkl","mno",
+    "pqrs","tu","vwx","yz"};
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        String str = in.next();
+        ArrayList<String> ans = getKPC(0, str);
+        System.out.println(ans);
+    }
+
+    public static ArrayList<String> getKPC(int idx, String str) {
+        //Base case
+        if(idx==str.length()){
+            ArrayList<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        
+        //Faith
+        
+        ArrayList<String> res = getKPC(idx+1, str);
+        
+        //Work
+        
+        ArrayList<String> ans = new ArrayList<>();
+        
+        for(Character ch : combo[str.charAt(idx)-'0'].toCharArray()){
+            for(String s : res){
+                ans.add(ch + s);
+            }
+        }
+        
+        return ans;
+     }
+     
+}
