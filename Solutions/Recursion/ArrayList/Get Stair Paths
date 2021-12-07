@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        ArrayList<String> ans = getStairPaths(n);
+        System.out.println(ans);
+
+    }
+
+    public static ArrayList<String> getStairPaths(int n) {
+    
+      //Base Case
+      if(n==0){
+        ArrayList<String> base = new ArrayList<>();
+        base.add("");
+        return base;
+      }
+      
+      ArrayList<String> ans = new ArrayList<>();
+      
+      //Paths on 1 jump
+      if(n-1>=0){
+        ArrayList<String> res1 = getStairPaths(n-1);
+        for(String s : res1){
+          ans.add(1+s);
+        }
+      }
+      
+      //Paths on 2 jumps
+      if(n-2>=0){
+        ArrayList<String> res2 = getStairPaths(n-2);
+        for(String s : res2){
+           ans.add(2+s);
+        }
+       }
+       
+       //Paths on 3 jumps
+       if(n-3>=0){
+         ArrayList<String> res3 = getStairPaths(n-3);
+         for(String s : res3){
+            ans.add(3+s);
+         }
+       }
+       
+       returns ans;
+     
+    }
+    
+}
