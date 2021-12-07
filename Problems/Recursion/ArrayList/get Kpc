@@ -1,0 +1,25 @@
+Input :- A string that consists of numbers.
+Process :- Each number in the input string stands for a key pressed on a mobile phone. 
+           The following list is the key to characters map :
+            0 -> .;
+            1 -> abc
+            2 -> def
+            3 -> ghi
+            4 -> jkl
+            5 -> mno
+            6 -> pqrs
+            7 -> tu
+            8 -> vwx
+            9 -> yz
+            
+            For the given numeric string, find all the possible mobile key mappings.
+            
+Output :- Print the arraylist.
+
+Example :-
+
+          Input :- 78
+
+          Output :- [tv, tw, tx, uv, uw, ux]
+
+          
