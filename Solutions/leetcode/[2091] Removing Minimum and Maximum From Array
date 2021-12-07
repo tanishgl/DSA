@@ -1,0 +1,76 @@
+class Solution {
+    public int minimumDeletions(int[] nums) {
+        
+        //If nums have 1 element
+        if(nums.length==1) return 1;
+        
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        int minIdx = 0, maxIdx = 0;
+        
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]<min){
+                min = nums[i];
+                minIdx = i;
+            }
+        }
+        
+        for(int j=0;j<nums.length;j++){
+            if(nums[j]>max){
+                max = nums[j];
+                maxIdx = j;
+            }
+        }
+        
+        //System.out.println(minIdx + " " + min + " " + maxIdx + " " + max);
+        
+        int[] arr = new int[2];
+        arr[0] = minIdx;
+        arr[1] = maxIdx;
+        int el = -1; //eliminated index
+        int el_c = 0;
+        int i = 0;
+        int j = nums.length-1;
+        int del = 0;
+        
+        while(el_c!=2){
+            int boundary_distance = Integer.MAX_VALUE;
+            int moving_idx = -1;
+            for(int x=0;x<2;x++){
+                if(arr[x]==el) continue;
+                int y = arr[x];
+                int dist = Math.min(Math.abs(y-i),Math.abs(y-j));
+                if(dist<boundary_distance){
+                    boundary_distance = dist;
+                    moving_idx = y;
+                }  
+            }
+            
+            int which_boundary = -1;
+           //System.out.println("i = " + i + " j = " + j + " boundary_distance = " + boundary_distance + " moving_idx = " + moving_idx);
+            if((moving_idx-i)==boundary_distance){
+                which_boundary = i;
+            } else {
+                which_boundary = j;
+            }
+            
+           //System.out.println(which_boundary);
+            
+            if(moving_idx==which_boundary){
+                el = moving_idx;
+                el_c++;
+            }
+            
+            if(which_boundary==i){
+                i++;
+            } else {
+                j--;
+            }
+            
+            del++;
+        }
+        
+        return del;
+
+    }
+}
