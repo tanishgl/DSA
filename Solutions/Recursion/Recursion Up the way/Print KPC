@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    static String[] dtoc = {".;","abc","def","ghi","jkl","mno","pqrs","tu","vwx","yz"};
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        String str = in.next();
+        printKPC(0,str,"");
+
+    }
+
+    public static void printKPC(int idx, String str, String asf) {
+        //Base Case
+        if(idx==str.length()){
+            System.out.println(asf);
+            return;
+        }
+
+        for(Character ch : dtoc[str.charAt(idx)-'0'].toCharArray()){
+            String keypad = asf + ch;
+            printKPC(idx+1,str,keypad);
+        }
+
+    }
+
+}
