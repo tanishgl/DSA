@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        String str = in.next();
+        printSS(0,str,"");
+
+    }
+
+    public static void printSS(int idx, String str, String ans) {
+        //Base Case
+        if(idx==str.length()){
+            System.out.println(ans);
+            return;
+        }
+
+        //Pre-work
+        //str.charAt(idx) appears.
+        String appear = ans + str.charAt(idx);
+        printSS(idx+1,str,appear);
+
+        //str.charAt(idx) doesn't appear.
+        String doesnotappear = ans;
+        printSS(idx+1,str,doesnotappear);
+    }
+
+}
