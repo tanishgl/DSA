@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        ArrayList<String> ans = getMazePaths(0,0,n-1,m-1);
+        System.out.println(ans);
+
+    }
+
+    // sr - source row
+    // sc - source column
+    // dr - destination row
+    // dc - destination column
+    public static ArrayList<String> getMazePaths(int sr, int sc, int dr, int dc) {
+        //Base Case
+        if(sr==dr && sc==dc){
+            ArrayList<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+
+        ArrayList<String> ans = new ArrayList<>();
+
+        //Faith over horizontal jumps.
+        int i=1;
+        while(sc+i<=dc){
+            ArrayList<String> res = getMazePaths(sr,sc+i,dr,dc);
+            for(String s : res){
+                ans.add("h"+i+s);
+            }
+            i++;
+        }
+
+        i = 1;
+        while(sr+i<=dr){
+            ArrayList<String> res = getMazePaths(sr+i,sc,dr,dc);
+            for(String s : res){
+                ans.add("v"+i+s);
+            }
+            i++;
+        }
+
+        i = 1;
+        while(sr+i<=dr && sc+i<=dc){
+            ArrayList<String> res = getMazePaths(sr+i,sc+i,dr,dc);
+            for(String s : res){
+                ans.add("d"+i+s);
+            }
+            i++;
+        }
+
+        return ans;
+
+    }
+
+}
