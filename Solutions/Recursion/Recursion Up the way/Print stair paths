@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        printStairPaths(n,"");
+    }
+
+    public static void printStairPaths(int n, String path) {
+        //Negative Base case
+        if(n<0){
+            return;
+        }
+
+        //Base Case
+        if(n==0){
+            System.out.println(path);
+            return;
+        }
+
+        //Either I will jump once.
+        String myPath = path + 1;
+        //Faith. I've jumped once, now proceed.
+        printStairPaths(n-1,myPath);
+
+        //Or, I will jump twice.
+        String mypath2 = path + 2;
+        printStairPaths(n-2,mypath2);
+
+        //Or, I will jump thrice.
+        String mypath3 = path + 3;
+        printStairPaths(n-3,mypath3);
+    }
+
+}
