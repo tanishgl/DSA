@@ -1,0 +1,18 @@
+Input :- You are given a number n and a number m representing number of rows and columns in a maze.
+Process :- You are standing in the top-left corner and have to reach the bottom-right corner. Only two moves are allowed 'h' (1-step horizontal) and 'v' (1-step vertical).
+Output :- Print the arrayList of every possible path as a string.
+
+Example :- 
+
+          Input :-
+              3
+              3
+
+          Output :-
+
+              hhvv
+              hvhv
+              hvvh
+              vhhv
+              vhvh
+              vvhh
