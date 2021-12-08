@@ -1,0 +1,15 @@
+Input :- A string .
+Process :- Find all the subsequences of the string using recursion.
+Output :- return the arrayList of the subsequences of the string.
+
+Example :-
+
+        Input :- abc
+        Output :- abc
+                  ab
+                  ac
+                  a
+                  bc
+                  b
+                  c
+
