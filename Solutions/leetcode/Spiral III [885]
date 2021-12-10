@@ -1,0 +1,84 @@
+class Solution {
+  public int[][] spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
+    /* Output matrix */
+    int[][] ans = new int[rows*cols][2];
+    
+    /*variables needed*/
+    int spiralRadius = 1;
+    int direction = 0;
+    int curRow = rStart;
+    int curCol = cStart;
+    
+    /* Put the starting cell in the matrix */
+    mat[0][0] = rStart;
+    mat[0][1] = cStart;
+    
+    /* Columns are always 2, but for row you need a counter */
+    int r = 1;            // r = 1, because we've already added 1st row into our answer matrix.
+    
+    /* Withing each spiral, we will take a definite number of moves. Those moves will get updated each time our spiral is over. */
+    int moves = 0;
+    
+    /* How many times will we run the while loop */
+    //We have to fill our ans matrix. So, we will run the loop as long as our row counter is <rows*cols.
+    
+    while(r<ans.length){
+      moves = 2*spiralRadius;
+      int j = 0;
+      while(j<moves){
+        if(direction==0){
+          //Move towards the right.
+          for(int i=0;i<spiralRadius;i++){
+             curCol++;
+             if(curRow>=0 && curRow<rows && curCol>=0 && curCol<=cols){
+                mat[r][0] = curRow;
+                mat[r++][1] = curCol;
+             }
+             j++;
+          }
+        } else if (direction==1){
+            //Move to the bottom.
+            for(int i=0;i<spiralRadius;i++){
+             curRow++;
+             if(curRow>=0 && curRow<rows && curCol>=0 && curCol<=cols){
+                mat[r][0] = curRow;
+                mat[r++][1] = curCol;
+             }
+             j++;
+          }
+        } else if (direction==2){
+            //Move to the left.
+            for(int i=0;i<spiralRadius;i++){
+             curCol--;
+             if(curRow>=0 && curRow<rows && curCol>=0 && curCol<=cols){
+                mat[r][0] = curRow;
+                mat[r++][1] = curCol;
+             }
+             j++;
+          }
+        } else if (direction==3){
+            //Move to the top.
+            for(int i=0;i<spiralRadius;i++){
+             curRow--;
+             if(curRow>=0 && curRow<rows && curCol>=0 && curCol<=cols){
+                mat[r][0] = curRow;
+                mat[r++][1] = curCol;
+             }
+             j++;
+          }
+        } 
+        direction = changeDir(direction);
+      }
+      spiralRadius++;
+    }
+    
+    return ans;
+  }
+  
+  public static int changeDir(int dir){
+    return (dir+1)%4;
+  }
+  
+}
+      
+    
