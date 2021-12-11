@@ -1,0 +1,59 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		while(t-->0){
+			int n = in.nextInt();
+					int[] stalls = new int[n];
+					int cows = in.nextInt();
+					for(int i=0;i<stalls.length;i++){
+						stalls[i] = in.nextInt();
+					}
+					Arrays.sort(stalls);
+					int diff = Integer.MAX_VALUE;
+					for(int i=1;i<stalls.length;i++){
+						if(stalls[i]-stalls[i-1]<diff){
+							diff = stalls[i]-stalls[i-1];
+						}
+					}
+					int low = diff;
+					int high = stalls[n-1]-stalls[0];
+					int ans = high;
+			
+					while(low<=high){
+						int mid = low + (high-low)/2;
+						if(isPossible(stalls,cows,mid)){
+							ans = mid;
+							low = mid + 1;
+						} else {
+							high = mid - 1;
+						}
+					}
+			
+					System.out.println(ans);
+		}
+		
+	}
+	
+	public static boolean isPossible(int[] stalls, int cows, int highestDistance){
+
+    //First fix a cow on the first stall, i.e. stalls[0].
+		int cowsReq = 1;
+		int cowStall = stalls[0];
+    
+    //Now iterate from 2nd stall to the remaining stalls. Find out the no. of cows you can install in stalls keeping highestDistance as the minimum distance between any 2 stalls, or indirectly b/w any 2 cows.
+		for(int i = 1;i<stalls.length;i++){
+			int dist = stalls[i]-cowStall;
+			if(dist>=highestDistance){
+				cowStall=stalls[i];
+				cowsReq++;
+			} 
+		}
+		if(cowsReq>=cows) return true;
+		else return false;
+	}
