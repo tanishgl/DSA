@@ -1,0 +1,47 @@
+class Solution {
+    public int maxDistance(int[] position, int m) {
+        Arrays.sort(position);
+        
+        //IF there are only 2 balls
+        int diff = Integer.MAX_VALUE;
+        for(int i=1;i<position.length;i++){
+            if(position[i]-position[i-1]<diff){
+                diff = position[i] - position[i-1];
+            }
+        }
+        
+        int low = diff;
+        int high = position[position.length-1] - position[0];
+        int ans = high;
+        
+        while(low<=high){
+            int mid = low + (high-low) / 2;
+            //System.out.println(mid);
+            if(isPossible(position, m, mid)){
+                ans = mid;
+                low = mid + 1; 
+            } else {
+                high = mid - 1;
+            }
+        }
+        
+        return ans;
+    }
+    
+    public static boolean isPossible(int[] position, int m, int hd){
+        //I'm saying that i've fixed 1st ball in the first bucket.
+        int balls = 1;
+        int fixture = position[0];
+        
+        for(int i=1;i<position.length;i++){
+            if(position[i]-fixture>=hd){
+                balls++;
+                fixture = position[i];
+            }
+        }
+        
+        if(balls<m) return false;
+        else return true;
+        
+    }
+}
