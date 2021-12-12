@@ -1,0 +1,64 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        String str = in.next();
+        int n = in.nextInt();
+        
+        int[] ans = count(str,0,0);
+        int prod = 0;
+        //int[] ithans = count(str,0,0);
+        
+        ArrayList<Integer> indices = new ArrayList<>();
+        
+        for(int i=0;i<ans.length;i++){
+            int a = ans[i];
+            int b = a+1;
+            int c = a+2;
+            if(b<str.length() && str.charAt(b)=='i'){
+                if(c==str.length()){
+                    prod++;
+                    indices.add(a);
+                    indices.add(b);
+                }
+                if(c<str.length() && str.charAt(c)!='t'){
+                    prod++;
+                    indices.add(a);
+                    indices.add(b);
+                }
+            }
+        }
+        String result = "";
+        for(int j=0;j<str.length();j++){
+            if(!indices.contains(j)){
+                result+=str.charAt(j);
+            }
+        }
+        
+        System.out.println(prod);
+        System.out.println(result.charAt(n));
+        System.out.println(result);
+    }
+    
+    public static int[] count(String s, int idx, int count){
+        if(idx==s.length()){
+            int[] arr = new int[count];
+            return arr;
+        }
+        
+        if(s.charAt(idx)=='h'){
+            int[] ans = count(s,idx+1,count+1);
+            ans[count] = idx;
+            return ans;
+        } else {
+            int[] ans = count(s,idx+1,count);
+            return ans;
+        }
+        
+        
+    }
+}
