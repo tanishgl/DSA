@@ -1,0 +1,42 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+  public static void main(String[] args) throws IOException {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[] num = new int[n];
+    for (int i = 0; i < n; i++) {
+      num[i] = scn.nextInt();
+    }
+    int k = scn.nextInt();
+    solve(num, k);
+  }
+
+  public static void solve(int[] arr, int k) {
+    int low = 0;
+    int high = arr.length;
+    int ans = -1;
+    
+    while(low<=high){
+        int mid = low + (high-low) / 2;
+        if(arr[mid]==k){
+            ans = mid;
+            break;
+        } else if (mid-1>=0 && arr[mid-1]==k){
+            ans = mid - 1;
+            break;
+        } else if (mid+1<arr.length && arr[mid+1]==k){
+            ans = mid + 1;
+            break;
+        } else if (arr[mid]<k){
+            high = mid - 2;
+        } else if (arr[mid]>k){
+            low = mid + 2;
+        }
+    }
+    
+    System.out.println(ans);
+  }
+}
