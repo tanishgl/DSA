@@ -1,0 +1,82 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        int n1 = in.nextInt();
+        int n2 = in.nextInt();
+        int ans = ways(0,0,n1,n2);
+        System.out.println(ans);
+        ArrayList<String> result = printways(0,0,n1,n2);
+        System.out.println(result);
+        printMoves(0,0,n1,n2,"");
+    }
+    
+    public static int ways(int sr, int sc, int dr, int dc){
+        if(sr>dr || sc>dc) return 0;
+        if(sr==dr && sc==dc) return 1;
+        
+        int ansH = ways(sr,sc+1,dr,dc);
+        int ansV = ways(sr+1,sc,dr,dc);
+        int ansD = ways(sr+1,sc+1,dr,dc);
+        
+        return ansH + ansV + ansD;
+    }
+    
+    public static ArrayList<String> printways(int sr, int sc, int dr, int dc){
+        if(sr>dr || sc>dc){
+            ArrayList<String> vain = new ArrayList<>();
+            return vain;
+        }
+        
+        if(sr==dr && sc==dc){
+            ArrayList<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        
+        ArrayList<String> gansH = printways(sr,sc+1,dr,dc);
+        ArrayList<String> gansV = printways(sr+1,sc,dr,dc);
+        ArrayList<String> gansD = printways(sr+1,sc+1,dr,dc);
+        ArrayList<String> ans = new ArrayList<>();
+        for(String res : gansH){
+            ans.add("H"+res);
+            
+        }
+        
+        for(String res : gansV){
+            ans.add("V"+res);
+            
+        }
+        
+        for(String res : gansD){
+            ans.add("D"+res);
+        }
+       return ans;
+    }
+    
+    public static void printMoves(int sr, int sc, int dr, int dc, String output){
+        if(sr>dr || sc>dc){
+            return;
+        }
+        
+        if(sr==dr && sc==dc){
+            System.out.println(output);
+        }
+        
+        //hori
+        String ansH = output + "H";
+        printMoves(sr,sc+1,dr,dc,ansH);
+        
+        String ansV = output + "V";
+        printMoves(sr+1,sc,dr,dc,ansV);
+        
+        String ansD = output + "D";
+        printMoves(sr+1,sc+1,dr,dc,ansD);
+        
+        
+    }
+}
