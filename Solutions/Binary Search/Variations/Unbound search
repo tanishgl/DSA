@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception{
+        Scanner in = new Scanner(System.in);
+        //Infinite array is given.
+        int ans = infiniteSearch(arr,0,1,target);
+    }
+    
+    public static int binarySearch(int[] arr, int low, int high, int target){
+        if(low>high) return -1;
+        
+            int mid = low + (high-low) / 2;
+            if(arr[mid]==target){
+                return mid;
+            } else if (arr[mid]>target){
+                return binarySearch(arr,low,mid-1,target);
+            } else {
+                return binarySearch(arr,mid+1,high,target);
+            }
+    }
+    
+    public static int infiniteSearch(int[] arr, int low, int high, int target){
+        if(low>high) return -1;
+        
+        if(target>=arr[low] && target<=arr[high]){
+            return binarySearch(arr,low,high,target);
+        } else {
+            return binarySearch(arr,high+1,high*2;target);
+        }
+    }
+}
