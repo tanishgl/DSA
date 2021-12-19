@@ -1,0 +1,67 @@
+class Solution {
+    public int reversePairs(int[] nums) {
+        int ans = mergeSort(nums, 0, nums.length-1);
+        return ans;
+    }
+    
+    public static int mergeSort(int[] arr, int low, int high){
+        if(low>=high){
+            return 0;
+        }
+        
+        int mid = low + (high-low)/2;
+        
+       int l =  mergeSort(arr,low,mid);   //left sorted
+        int r = mergeSort(arr,mid+1,high);    //right sorted
+        
+       int lr =  merge(arr,low,mid,mid+1,high);
+        return l+r+lr;
+    }
+    
+    public static int merge(int[] arr, int a1l, int a1r, int a2l, int a2r){
+        int pairs = 0;
+        int[] res = new int[a1r-a1l+a2r-a2l+2];
+        int a = a1l, b = a2l;
+        
+        while(a<=a1r && b<=a2r){
+            if((long)arr[a]>(long)2*arr[b]){
+                pairs += (a1r - a + 1);
+                b++;
+            } else {
+                a++;
+            }
+        }
+        
+        
+        int i = a1l, j = a2l, k = 0;
+        while(i<=a1r && j<=a2r){
+            if(arr[i]>arr[j]){
+                res[k] = arr[j];
+                k++;
+                j++;
+            } else {
+                res[k] = arr[i];
+                i++;
+                k++;
+            }
+        }
+        
+        while(i<=a1r){
+            res[k] = arr[i];
+            i++;
+            k++;
+        }
+        
+        while(j<=a2r){
+            res[k] = arr[j];
+            k++;
+            j++;
+        }
+        
+        for(int x=a1l;x<=a2r;x++){
+            arr[x] = res[x-a1l];
+        }
+        
+        return pairs;
+    }
+}
