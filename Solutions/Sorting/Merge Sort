@@ -7,9 +7,7 @@ public class Main {
     //write your code here
     //Base case
     if(lo==hi){
-        int[] base = new int[1];
-        base[0] = arr[lo];
-        return base;
+        return new int[] {arr[lo]};
     }
 
     int mid = lo + (hi - lo)/2;
