@@ -14,7 +14,7 @@ public class Main {
   public static void swap(Student s1, Student s2){
     Student temp = s1;
     s1 = s2;
-    s2 = s1;
+    s2 = temp;
   }
 
   public static void main(String[] args) {
