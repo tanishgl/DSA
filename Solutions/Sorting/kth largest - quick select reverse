@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    int[] arr = {8,1,2,5,7,3,4,9};
+      
+      /* QuickSort 
+    quickSortDec(arr,0,arr.length-1);
+    for(int val : arr){
+        System.out.print(val + " ");
+    }
+    */
+      
+      int ans = kthLargest(arr,0,arr.length-1,7);
+      System.out.println(ans);
+  }
+    
+//     public static void quickSortDec(int[] arr, int lo, int hi){
+//         if(lo>=hi){
+//             return;
+//         }
+        
+//         int idx = partition(arr,lo,hi,arr[hi]);
+//         quickSortDec(arr,lo,idx-1);
+//         quickSortDec(arr,idx+1,hi);
+//     }
+    
+    public static int kthLargest(int[] arr, int lo, int hi, int k){
+        int idx = partition(arr,lo,hi,arr[hi]);
+        
+        if(idx==k-1){
+            return arr[idx];
+        } else if (idx < k-1){
+            return kthLargest(arr,idx+1,hi,k);
+        } else if (idx>k-1){
+            return kthLargest(arr,lo,idx-1,k);
+        }
+        
+        return -1;
+    }
+    
+    public static int partition(int[] arr, int l, int r, int target){
+        int i = 0, j = 0;
+        while(i<=r){
+            if(arr[i]>=target){
+                swap(arr,i,j);
+                i++;
+                j++;
+            } else {
+                i++;
+            }
+        }
+        
+        return j-1;
+    }
+    
+    public static void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
