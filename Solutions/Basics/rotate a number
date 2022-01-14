@@ -1,0 +1,43 @@
+import java.util.*;
+   
+   public class Main{
+   
+   public static void main(String[] args) {
+     Scanner in = new Scanner(System.in);
+     int x = in.nextInt();
+     int k = in.nextInt();
+     int n = x;
+     int digits = 0;
+
+     while(x/10>0){
+       digits++;
+       x/=10;
+     }
+     digits++;
+
+     // If rotation count is negative or exceeds the number of digits, then treat it wisely.
+     if(k<0){
+       k = k%digits;
+     } else if (k>digits){
+       k = k%digits;
+     }
+    
+     int discard = 0;
+     for(int i=0;i<k;i++){
+       // extract the digits from last upto k.
+       int digit = n % 10;
+       // Now create the new number.
+       discard += digit * (int)Math.pow(10,i);
+       // discard the digit from the orginal number.
+       n/=10;
+     }
+
+     int remaining_digits = digits - k;
+
+    // Append the discarded number to the front of number.
+     n = discard * (int)Math.pow(10,remaining_digits) + n;
+
+     System.out.println(n);
+
+    }
+   }
