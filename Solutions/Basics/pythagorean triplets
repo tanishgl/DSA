@@ -1,0 +1,31 @@
+import java.util.*;
+  
+  public class Main{
+  
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int a = in.nextInt();
+    int b = in.nextInt();
+
+    if(a<b){
+      int temp = a;
+      a = b;
+      b = a;
+    }
+
+    int c = in.nextInt();
+    
+    if(a<c){
+      int temp = a;
+      a = c;
+      c = temp;
+    }
+
+    if(a*a==b*b+c*c){
+      System.out.println("true");
+    } else {
+      System.out.println("false");
+    }
+    
+   }
+  }
