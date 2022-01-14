@@ -1,0 +1,18 @@
+import java.util.*;
+  
+  public class Main{
+  
+  public static void main(String[] args) {
+      // write your code here
+      Scanner in = new Scanner(System.in);
+      int n = in.nextInt();
+
+      int i = -1;
+      int j = 1;
+      while(n-->0){
+        System.out.println(i+j);
+        j = i + j;
+        i = j - i;
+      }
+   }
+  }
