@@ -1,0 +1,41 @@
+class Solution {
+    public ListNode reverseK(ListNode head, int k){
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode ahead = null;
+        while(curr!=null && k-->0){
+             //System.out.println(prev + " " + curr + " " + ahead + " " + k);
+            ahead = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = ahead;
+        }
+        
+        head.next = curr;
+        //System.out.println(prev.val);
+        return prev;
+        
+    }
+    
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if(left==right) return head;
+        
+        if(left==1) return reverseK(head,right-left+1);
+        
+        ListNode prev = null;
+        ListNode temp = head;
+        int l = left;
+        while(left-->1){
+            prev = temp;
+            temp = temp.next;
+        }
+        
+        ListNode ln = reverseK(temp, right-l+1);
+        prev.next = ln;
+        
+        return head;
+        
+        
+        
+    }
+}
