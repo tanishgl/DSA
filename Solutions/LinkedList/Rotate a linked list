@@ -1,0 +1,58 @@
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        //If no nodes.
+        if(head==null) return null;
+        
+        //If only 1 node.
+        if(head.next==null) return head;
+        
+        //Get the size of the linked List.
+        int size = getLen(head);
+        
+        //If k > size, then handle it.
+        k = k % size;
+        
+        //Reverse the first 1 to (size-k) nodes.
+        int left = size - k;
+        int l = left;
+        
+        //Obtain the rightHead before any reversal. Because, after reversal, the linked list breaks. i.e. after reversing the left portion of the array, access to the right portion's head would be lost. So, obtain that first.
+        ListNode rightHead = head;
+        while(rightHead!=null && left-->0){
+            rightHead = rightHead.next;
+        }
+        
+        //Now you can reverse the left portion.
+        ListNode leftHead = reverse(head, l);
+        
+        //Reverse the last K nodes i.e. the right portion and obtain the updated righthead.
+        rightHead = reverse(rightHead, k);
+        
+        //Connect the left-tail to the rightHead.
+        head.next = rightHead;
+        
+        //Reverse the entire linked list.
+        return reverse(leftHead, size);
+    }
+    
+    public ListNode reverse(ListNode head, int count){
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr!=null && count-->0){
+            ListNode ahead = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = ahead;
+        }
+        return prev;
+    }
+    
+    public int getLen(ListNode head){
+        int size = 0;
+        while(head!=null){
+            size++;
+            head = head.next;
+        }
+        return size;
+    }
+}
