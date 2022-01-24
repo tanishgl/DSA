@@ -1,0 +1,39 @@
+class Solution {
+    static int size = 0;
+    public void reorderList(ListNode head) {
+        if(head.next==null) return;
+        size = getLen(head);
+        //System.out.println(size);
+        ListNode node = func(head,head,0);
+    }
+    
+    public ListNode func(ListNode left, ListNode right, int counter){
+        if(left==null) return right;
+        
+        right = func(left.next, right, counter+1);
+        
+        if(counter>=size/2){
+           // System.out.println(counter + " " + left.val + " " + right.val);
+            left.next = right.next;
+            right.next = left;
+        }
+        
+        if(left.next==left){
+            left.next = null;
+        }
+        
+        //if(left==right) left.next = null;
+        
+        return left.next;
+    }
+    
+    public int getLen(ListNode head){
+        int size = 0;
+        while(head!=null){
+            head = head.next;
+            size++;
+        }
+        
+        return size;
+    }
+}
