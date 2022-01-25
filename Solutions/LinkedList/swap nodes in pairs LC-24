@@ -1,0 +1,55 @@
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if(head==null) return null;
+        if(head.next==null) return head;
+        
+        ListNode prev = new ListNode(-1);
+        ListNode pt = prev;
+        
+        while(head!=null){
+            ListNode curr = new ListNode(-1);
+            ListNode ct = curr;
+            
+            int k = 2;
+            
+            while(head!=null && k>0){
+                ct.next = head;
+                ct = head;
+                head = head.next;
+                k = k - 1;
+            }
+            
+            if(k==0){
+                ListNode rd = curr.next;
+                curr = reverse(curr.next);
+                System.out.println(curr.val);
+                
+                if(pt==prev){
+                    prev = curr;
+                } else {
+                    pt.next = curr;
+                }
+                pt = rd;
+            } else {
+                pt.next = curr.next;
+            }
+        }
+        
+        return prev;
+    }
+    
+    public static ListNode reverse(ListNode head){
+        ListNode prev = null;
+        ListNode curr = head;
+        int k = 2;
+        while(curr!=null && k>0){
+            ListNode ahead = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = ahead;
+            k--;
+        }
+        
+        return prev;
+    }
+}
