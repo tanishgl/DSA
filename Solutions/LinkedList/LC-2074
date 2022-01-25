@@ -1,0 +1,78 @@
+class Solution {
+    public ListNode reverse(ListNode head, int k){
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr!=null && k>0){
+            ListNode ahead = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = ahead;
+            k--;
+        }
+        return prev;
+    }
+    
+    public ListNode reverseEvenLengthGroups(ListNode head) {
+        ListNode prev = new ListNode(-1);
+        ListNode pt = prev;
+        
+        int i = 0, j = 0;
+        
+        while(head!=null){
+            ListNode curr = new ListNode(-1);
+            ListNode ct = curr;
+            
+            j++;
+            i = j;
+            
+            //Obtain the length of the remaining linked list.
+            int sz = getLen(head);
+            
+            if(i>sz){
+                i = sz;
+                j = sz;
+            }
+            
+            //Create the curr linked list first.
+            while(head!=null && i-->0){
+                ct.next = head;
+                ct = head;
+                head = head.next;
+            }
+            
+            //Restore the value of i.
+            i = j;
+            
+            //System.out.println(i + " " + j + " " + sz);
+            
+            if(i%2==0){
+                ListNode rd = curr.next;
+                curr = reverse(curr.next, i);
+                if(pt==prev){
+                    prev = curr;
+                } else {
+                    pt.next = curr;
+                }
+                pt = rd;
+            } else {
+                if(pt==prev){
+                    prev.next = ct;
+                } else {
+                    pt.next = curr.next;
+                }
+                pt = ct;
+            }
+        }
+        
+        return prev.next;
+    }
+    
+    public static int getLen(ListNode head){
+        int size = 0;
+        while(head!=null){
+            head = head.next;
+            size++;
+        }
+        return size;
+    }
+}
