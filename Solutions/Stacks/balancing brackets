@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        boolean answer = isBalanced(str);
+        System.out.println(answer);
+    }
+
+    public static boolean isBalanced(String str){
+        Stack<Character> s = new Stack<>();
+
+        for(int i=0;i<str.length();i++){
+            char ch = str.charAt(i);
+            if(ch=='(' || ch=='[' || ch=='{'){
+                s.push(ch);
+            } else if(ch==')' || ch==']' || ch=='}'){
+                //check if something exists on top.
+                if(s.size()==0){
+                    return false;
+                } 
+
+                if(isValidTop(s, ch)){
+                    s.pop();
+                } else {
+                    return false;
+                }
+            } else {
+                //Neither opening, nor closing.
+                continue;
+            }
+        }
+
+        //Check if stack contains any opening braces.
+        if(s.size()!=0){
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isValidTop(Stack<Character> st, char ch){
+        if(ch==')' && st.peek()=='('){
+            return true;
+        } else if (ch==']' && st.peek()=='['){
+            return true;
+        } else if (ch=='}' && st.peek()=='{'){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
