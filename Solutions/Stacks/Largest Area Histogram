@@ -1,0 +1,82 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    int n = Integer.parseInt(br.readLine());
+    int[] a = new int[n];
+    for(int i = 0; i < n; i++){
+       a[i] = Integer.parseInt(br.readLine());
+    }
+
+    int[] left = NSEtoLeft(a);
+    int[] right = NSEtoRight(a);
+    int[] ans = new int[a.length];
+    for(int i=0;i<ans.length;i++){
+       ans[i] = (right[i] - left[i] - 1) * a[i];
+    }
+
+    int max = Integer.MIN_VALUE;
+    for(int i=0;i<ans.length;i++){
+       max = Math.max(max, ans[i]);
+    }
+
+    System.out.println(max);
+
+    // code
+ }
+
+ public static int[] NSEtoLeft(int[] arr){
+    int[] ans = new int[arr.length];
+    Stack<Integer> st = new Stack<>();
+    st.push(0);
+
+    //left to right.
+    for(int i=1;i<arr.length;i++){
+       //ARE YOU MY SMALLEST?
+       while(st.size()>0 && arr[st.peek()]>=arr[i]){
+          st.pop();
+       }
+
+       if(st.size()>0){
+          ans[i] = st.peek();
+       } else {
+          ans[i] = -1;
+       }
+
+       st.push(i);
+    }
+
+    return ans;
+
+ }
+
+ public static int[] NSEtoRight(int[] arr){
+    int[] ans = new int[arr.length];
+    Stack<Integer> st = new Stack<>();
+    st.push(arr.length-1);
+
+    //right to left.
+    for(int i=arr.length-2;i>=0;i--){
+       //ARE YOU MY SMALLEST?
+       while(st.size()>0 && arr[st.peek()]>=arr[i]){
+          st.pop();
+       }
+
+       if(st.size()>0){
+          ans[i] = st.peek();
+       } else {
+          ans[i] = arr.length;
+       }
+
+       st.push(i);
+    }
+
+    return ans;
+
+ }
+}
