@@ -1,0 +1,43 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        //1. Decide which one's the shorter array.
+        if(nums1.length>nums2.length){
+            return findMedianSortedArrays(nums2, nums1);
+        }
+        
+        //Now, nums1 array will always be smaller in size than nums2.
+        
+        //Variables.
+        int n = nums1.length + nums2.length;
+        int nby2 = (n+1)/2;
+        
+        //We will apply binary search on first array i.e. nums1.
+        int lo = 0;
+        int hi = nums1.length;
+        
+        while(lo<=hi){
+            int mid = lo + (hi-lo)/2;
+            
+            int al = (mid - 1 >=0) ? nums1[mid-1] : Integer.MIN_VALUE;
+            int ar = (mid < nums1.length) ? nums1[mid] : Integer.MAX_VALUE;
+            int bl = (nby2 - mid - 1 >=0) ? nums2[nby2 - mid -1] : Integer.MIN_VALUE;
+            int br = (nby2 - mid < nums2.length) ? nums2[nby2 - mid] : Integer.MAX_VALUE;
+            if(al<=br && bl<=ar){
+                //It's a valid combination.
+                if(n%2==1){
+                    return Math.max(al,bl);
+                } else {
+                    int[] arr = {al, bl, ar, br};
+                    Arrays.sort(arr);
+                    return (arr[1]+arr[2]) / 2.0;
+                }
+            } else if (al>br){
+                hi = mid - 1;
+            } else if (bl>ar){
+                lo = mid + 1;
+            }
+        }
+        
+        return 0.0;
+    }
+}
