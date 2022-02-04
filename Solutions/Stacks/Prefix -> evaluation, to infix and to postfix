@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+public static int perform(int op1, char opr, int op2){
+    if(opr=='*'){
+         return op1*op2;
+     } else if (opr=='/'){
+         return op1/op2;
+     } else if (opr=='+'){
+         return op1 + op2;
+     } else if (opr=='-'){
+         return op1 - op2;
+     }
+
+     return 0;
+}
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+
+    Stack<Integer> eval = new Stack<>();
+    Stack<String> postfix = new Stack<>();
+    Stack<String> infix = new Stack<>();
+
+    for(int i=str.length()-1;i>=0;i--){
+        char ch = str.charAt(i);
+
+        if(ch=='-' || ch=='+' || ch=='*' || ch=='/'){
+            //Evaluation.
+            int a = eval.pop();
+            int b = eval.pop();
+            eval.push(perform(a,ch,b));
+
+            //postfix.
+            String sa = postfix.pop();
+            String sb = postfix.pop();
+            postfix.push(sa+sb+ch);
+
+            //Infix.
+            String ia = infix.pop();
+            String ib = infix.pop();
+            infix.push("("+ia+ch+ib+")");
+        } else {
+            eval.push(ch-'0');
+            postfix.push(ch+"");
+            infix.push(ch+"");
+        }
+    }
+
+    System.out.println(eval.peek());
+    System.out.println(infix.peek());
+    System.out.println(postfix.peek());
+ }
+}
