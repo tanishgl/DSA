@@ -1,0 +1,35 @@
+class Solution {
+    public String removeKdigits(String num, int k) {
+        Deque<Character> q = new ArrayDeque<>();
+        //q.addLast(num.charAt(0));
+        
+        for(int i=0;i<num.length();i++){
+            char ch = num.charAt(i);
+            while(q.size()>0 && k>0 && q.getLast()>ch){
+                q.removeLast();
+                k--;
+            }
+            
+            if(q.size()==0 && ch=='0')
+                continue;
+            else 
+                q.addLast(ch);
+            
+        }
+        
+        //For remaining string and remaining deletions.
+        while(q.size()>0 && k-->0){
+            q.removeLast();
+        }
+        
+        if(q.size()==0) return "0";
+        
+        //Answer formation.
+        String ans = "";
+        while(q.size()>0){
+            ans += q.removeFirst();
+        }
+        
+        return ans;
+    }
+}
