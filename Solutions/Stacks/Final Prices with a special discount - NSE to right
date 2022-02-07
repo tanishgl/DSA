@@ -1,0 +1,25 @@
+class Solution {
+    public int[] finalPrices(int[] prices) {
+        //NSE to the right.
+        int[] ans = new int[prices.length];
+        ans[ans.length-1] = prices[prices.length-1];
+        Stack<Integer> st = new Stack<>();
+        st.push(prices.length-1);
+        
+        for(int i=prices.length-2;i>=0;i--){
+            while(st.size()>0 && prices[st.peek()]>prices[i]){
+                st.pop();
+            }
+            
+            if(st.size()>0){
+                ans[i] = prices[i] - prices[st.peek()];
+            } else {
+                ans[i] = prices[i];
+            }
+            
+            st.push(i);
+        }
+        
+        return ans;
+    }
+}
