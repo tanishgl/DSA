@@ -1,0 +1,43 @@
+class MinStack {
+
+    Stack<Long> st = new Stack<>();
+    long min = Long.MAX_VALUE;
+    
+    public void push(int val) {
+        if(st.size()==0){
+            st.push(1l * val);
+            min = (long)val;
+        } else if(val<min){
+            //Encrypt if val is less than min.
+            st.push(2l *val - min);
+            min = (long)val;
+        } else {
+            st.push(1l * val);
+        }
+    }
+    
+    public void pop() {
+        if(st.size()==0) return;
+        
+        if(st.peek()<min){
+            //decrypt the min.
+            min = 2l * min - st.pop();
+        } else {
+            st.pop();
+        }
+    }
+    
+    public int top() {
+        if(st.size()==0) return -1;
+        
+        if(st.peek()<min)
+            return (int)min;
+        
+        long top = st.peek();
+        return (int)top;
+    }
+    
+    public int getMin() {
+        return (int)min;
+    }
+}
