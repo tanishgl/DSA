@@ -14,6 +14,10 @@ public static void display(Node node){
 
     //Meeting faith with expectations.
     for(Node child : node.children){
+        //Edge preorder
       display(child);
+      //Edge postorder
     }
+    
+    //Node postorder
   }
