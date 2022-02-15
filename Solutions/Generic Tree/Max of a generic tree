@@ -1,0 +1,10 @@
+public static int max(Node node) {
+    int maxM = Integer.MIN_VALUE;
+
+    for(Node child : node.children){
+      int ans = max(child);
+      maxM = Math.max(maxM, ans);
+    }
+
+    return Math.max(maxM, node.data);
+  }
