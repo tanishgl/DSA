@@ -1,0 +1,19 @@
+class Solution {
+    public List<Integer> postorder(Node root) {
+        if(root==null) return new ArrayList<>();
+        
+        List<Integer> fans = new ArrayList<>();
+        
+        for(Node child : root.children){
+            List<Integer> futureans = postorder(child);
+            
+            for(Integer data : futureans){
+                fans.add(data);
+            }
+        }
+            
+        fans.add(root.val);
+        
+        return fans;
+    }
+}
