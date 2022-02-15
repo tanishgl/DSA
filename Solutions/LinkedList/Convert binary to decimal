@@ -1,0 +1,26 @@
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        head = reverse(head);
+        int m = 1;
+        int ans = 0;
+        while(head!=null){
+            ans += head.val * m;
+            m*=2;
+            head = head.next;
+        }
+        
+        return ans;
+    }
+    
+    public static ListNode reverse(ListNode head){
+        ListNode prev = null, curr = head;
+        while(curr!=null){
+            ListNode ahead = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = ahead;
+        }
+        
+        return prev;
+    }
+}
