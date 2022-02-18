@@ -1,0 +1,17 @@
+public static void linearize(Node node){
+    for(Node child : node.children){
+      linearize(child);
+    }
+
+    for(int i=node.children.size()-2;i>=0;i--){
+      Node temp = getLeaf(node.children.get(i));
+      temp.children.add(node.children.get(i+1));
+      node.children.remove(i+1);
+    }
+
+  }
+
+  public static Node getLeaf(Node node){
+    while(node.children.size()!=0){
+      node = node.children.get(0);
+    }
