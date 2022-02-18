@@ -1,0 +1,44 @@
+class GfG
+{
+    Node flatten(Node root)
+    {
+	    if(root ==null || root.next==null){
+	        return root;
+	    }
+	    
+	    Node ans = flatten(root.next);
+	    return merge2(root, ans);
+	    
+    }
+    
+    Node merge2(Node n1, Node n2){
+        Node dummy = new Node(-1);
+        Node tail = dummy;
+        
+        while(n1!=null && n2!=null){
+            if(n1.data <= n2.data){
+                tail.bottom = n1;
+                tail = n1;
+                n1 = n1.bottom;
+            } else {
+                tail.bottom = n2;
+                tail = n2;
+                n2 = n2.bottom;
+            }
+        }
+        
+        while(n1!=null){
+            tail.bottom = n1;
+            tail = n1;
+            n1 = n1.bottom;
+        }
+        
+        while(n2!=null){
+            tail.bottom = n2;
+            tail = n2;
+            n2 = n2.bottom;
+        }
+        
+        return dummy.bottom;
+    }
+}
