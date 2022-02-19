@@ -1,0 +1,21 @@
+class Solution {
+    public List<Long> maximumEvenSplit(long finalSum) {
+        if(finalSum%2!=0) return new ArrayList<Long>();
+        
+        List<Long> ans = new ArrayList<>();
+        long x = 2l;
+        
+        while(finalSum>0){
+            if(finalSum-x>x){
+                ans.add((long)x);
+                finalSum -= x;
+                x += 2;
+            } else {
+                ans.add((long)finalSum);
+                return ans;
+            }
+        }
+        
+        return ans;
+    }
+}
