@@ -1,0 +1,21 @@
+class Solution {
+    int helper(Node root, int[] arr){
+        if(root==null) return 0;
+        
+        int lh = helper(root.left, arr);
+        int rh = helper(root.right, arr);
+        
+        arr[0] = Math.max(arr[0], lh+rh+1);
+        
+        return 1 + Math.max(lh,rh);
+    }
+    
+    int diameter(Node root) {
+       if(root==null) return 0;
+       int[] arr = new int[1];
+       helper(root, arr);
+       return arr[0];
+    }
+}
+
+Array changes := Heap changes which always persist. Same as using static variable but at no cost of data breach.
