@@ -1,0 +1,22 @@
+class Solution {
+    // Function to return the diameter of a Binary Tree.
+    
+    int height(Node root){
+        if(root==null) return 0;
+        
+        return 1 + Math.max(height(root.left),height(root.right));
+    }
+    
+    int diameter(Node root) {
+        if(root == null) return 0;
+        
+        int lh = height(root.left);
+        int rh = height(root.right);
+        
+        return Math.max(lh+rh+1, Math.max(diameter(root.left), diameter(root.right)));
+    }
+}
+
+In the worst Case (skewed tree), last node get's visited n-1 times under height function and another n-1 times under diameter function.
+So, total 2n times.
+For all nodes -> o(N^2) time complexity.
