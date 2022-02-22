@@ -1,0 +1,42 @@
+public class Solution {
+    public int globalDiameter = 0;
+    
+    public int dfs(ArrayList<Integer>[] adj, int root){
+        // if(adj[root].size()==0) return 0;
+
+        int firstMax = 0, secMax = 0;
+
+        for(int val : adj[root]){
+            int height = dfs(adj, val);
+            if(height>firstMax){
+                secMax = firstMax;
+                firstMax = height;
+            } else if (height >= secMax){
+                secMax = height;
+            }
+        }
+
+        globalDiameter = Math.max(globalDiameter, firstMax+secMax+1);
+
+        return firstMax + 1;
+    }
+
+    public int solve(int[] A) {
+        //Creating adjacency list.
+
+        ArrayList<Integer>[] adj = new ArrayList[A.length];
+
+        for(int i=0;i<A.length;i++){
+            adj[i] = new ArrayList<>();
+        }
+
+        int root = 0;
+        for(int i=0;i<A.length;i++){
+            if(A[i]!=-1) adj[A[i]].add(i);
+            if(A[i]==-1) root = i;
+        }
+
+        dfs(adj, root);
+        return globalDiameter - 1;
+    }
+}
