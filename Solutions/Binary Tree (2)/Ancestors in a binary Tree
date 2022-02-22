@@ -1,0 +1,32 @@
+class Solution
+{
+    
+    public static boolean helper(Node root, ArrayList<Integer> anc, int target){
+        if(root==null) return false;
+        anc.add(root.data);
+        
+        if(root.data==target) {
+            anc.remove(new Integer(root.data));
+            return true;
+        }
+        
+        boolean left = helper(root.left, anc, target);
+        boolean right = helper(root.right, anc, target);
+        
+        if(!left && !right){
+            anc.remove(new Integer(root.data));
+            return false;
+        } else {
+            return true;
+        }
+        
+    }
+    
+    public static ArrayList<Integer> Ancestors(Node root, int target)
+    {
+        ArrayList<Integer> anc = new ArrayList<>();
+        helper(root, anc, target);
+        Collections.reverse(anc);
+        return anc;
+    }
+}
