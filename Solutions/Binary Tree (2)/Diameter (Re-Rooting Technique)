@@ -1,0 +1,27 @@
+class Solution {
+    
+    static class Pair{
+        int height = 0;
+        int diameter = 0;
+    }
+    
+    Pair helper(Node root){
+        if(root==null) return new Pair();
+        
+        Pair left = helper(root.left);
+        Pair right = helper(root.right);
+        
+        Pair curr = new Pair();
+        curr.height = 1 + Math.max(left.height, right.height);
+        curr.diameter = Math.max(1+left.height+right.height, Math.max(left.diameter, right.diameter));
+        
+        return curr;
+    }
+    
+    int diameter(Node root) {
+        if(root==null) return 0;
+        return helper(root).diameter;
+    }
+}
+
+Above is O(N).
