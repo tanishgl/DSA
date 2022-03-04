@@ -1,0 +1,21 @@
+static int sumG = Integer.MIN_VALUE;
+  static Node nodeG;
+
+  public static int sumation(Node root){
+    if(root==null) return 0;
+
+    int currSum = 0;
+
+    for(Node child : root.children){
+      currSum += sumation(child);
+    }
+
+    currSum += root.data;
+
+    if(currSum > sumG){
+      sumG = currSum;
+      nodeG = root;
+    }
+
+    return currSum;
+  }
