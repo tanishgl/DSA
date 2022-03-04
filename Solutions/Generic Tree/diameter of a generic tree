@@ -1,0 +1,18 @@
+public static int diameter = Integer.MIN_VALUE;
+
+  public static int fn(Node root){
+    if(root==null) return 0;
+
+    int fm = Integer.MIN_VALUE, sm = Integer.MIN_VALUE;
+    for(Node child : root.children){
+      int height = fn(child);
+      if(height>fm){
+        fm = height;
+      } else if (height>=sm){
+        sm = height;
+      }
+    }
+
+    diameter = Math.max(diameter, fm + sm + 1);
+    return fm + 1;
+  }
