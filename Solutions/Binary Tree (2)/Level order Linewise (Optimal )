@@ -1,0 +1,16 @@
+public static void levelOrderLinewise3(Node node){
+    Queue<Node> q = new ArrayDeque<>();
+    q.add(node);
+
+    while(q.size()>0){
+      int size = q.size();
+      while(size-->0){
+        Node curr = q.remove();
+        System.out.print(curr.data + " ");
+        for(Node child : curr.children){
+          q.add(child);
+        }
+      }
+      System.out.println();
+    }
+  }
