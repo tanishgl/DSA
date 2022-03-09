@@ -1,0 +1,40 @@
+public static class Pair{
+    Node node;
+    int state;
+    Pair(Node node){
+      this.node = node;
+      this.state = -1;
+    }
+  }
+
+  public static void IterativePreandPostOrder(Node node) {
+    Stack<Pair> st = new Stack<>();
+    st.push(new Pair(node));
+
+    String pre = "";
+    String post = "";
+
+    while(st.size()>0){
+      Pair top = st.peek();
+      if(top.state == -1){
+        //PREORDER
+        pre += top.node.data + " ";
+        //EDGE PRE
+        top.state++;
+      } else if (top.state == top.node.children.size()){
+        //POSTORDER
+        post += top.node.data + " ";
+        //EDGE POST
+        st.pop();
+      } else {
+        //EDGE
+        Pair child = new Pair(top.node.children.get(top.state));
+        //FOR NEXT CHILD
+        top.state++;
+        st.push(child);
+      }
+    }
+
+    System.out.println(pre);
+    System.out.println(post);
+  }
