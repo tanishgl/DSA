@@ -1,0 +1,11 @@
+public static boolean isBST2(Node node, int min, int max){
+    if(node == null) return true;
+
+    if(node.data > min && node.data < max){
+      boolean lres = isBST2(node.left, min, node.data);
+      boolean rres = isBST2(node.right, node.data, max);
+      return lres && rres;
+    }
+
+    return false;
+  }
