@@ -1,0 +1,63 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] arr = new int[n];
+        for(int i=0;i<arr.length;i++){
+            arr[i] = in.nextInt();
+        }
+        // System.out.println(csRec(0,n,arr));
+        int[] dp = new int[n+1];
+        Arrays.fill(dp, -1);
+        csMem(0,n,arr,dp);
+        // System.out.println(dp[0]);
+        System.out.println(csTab(n,arr));
+    }
+
+    public static int csRec(int src, int dest, int[] arr){
+        if(src==dest) return 1;
+        if(src > dest) return 0;
+
+        int totalPaths = 0;
+        for(int i=1;i<=arr[src];i++){
+            totalPaths += csRec(src+i, dest, arr);
+        }
+
+        return totalPaths;
+    }
+
+    public static int csMem(int src, int dest, int[] arr, int[] dp){
+        if(src==dest) return 1;
+        if(src>dest) return 0;
+
+        if(dp[src]!=-1) return dp[src];
+
+        int totalPaths = 0;
+        for(int i=1;i<=arr[src];i++){
+            totalPaths += csMem(src+i, dest, arr, dp);
+        }
+        dp[src] = totalPaths;
+        return dp[src];
+    }
+
+    public static int csTab(int n, int[] arr){
+        int[] dp = new int[n+1];
+        dp[n] = 1;
+
+        for(int i=n-1;i>=0;i--){
+            for(int jumps = 1; jumps <= arr[i]; jumps++){
+                if(i+jumps < dp.length){
+                    dp[i] += dp[i+jumps];
+                }
+            }
+        }
+
+        return dp[0];
+    }
+
+}
