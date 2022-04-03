@@ -1,0 +1,85 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[][] arr = new int[n][m];
+        int[][] dp = new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                arr[i][j] = in.nextInt();
+                dp[i][j] = -1;
+            }
+        }
+
+        
+
+        // System.out.println(mcmtRec(arr, 0, 0, n-1, m-1));
+        // System.out.println(mcmtMem(arr, 0, 0, n-1, m-1, dp));
+        System.out.println(mcmtTab(arr));
+
+    }
+
+    public static int mcmtRec(int[][] arr, int sr, int sc, int dr, int dc){
+        if(sr==dr && sc==dc){
+            return arr[sr][sc];
+        }
+
+        if(sr>=arr.length || sr<0 || sc <0 || sc>=arr[0].length){
+            return Integer.MAX_VALUE;
+        }
+
+        int minCost = Integer.MAX_VALUE;
+        int hc = mcmtRec(arr,sr,sc+1,dr,dc);
+        int vc = mcmtRec(arr,sr+1,sc,dr,dc);
+        // System.out.println(sr + " " + sc);
+        minCost = Math.min(hc,vc) + arr[sr][sc];
+        return minCost;
+    }
+
+    public static int mcmtMem(int[][] arr, int sr, int sc, int dr, int dc, int[][] dp){
+        if(sr==dr && sc==dc){
+            return arr[sr][sc];
+        }
+
+        if(sr>=arr.length || sr<0 || sc <0 || sc>=arr[0].length){
+            return Integer.MAX_VALUE;
+        }
+
+        if(dp[sr][sc] != -1) return dp[sr][sc];
+
+        int minCost = Integer.MAX_VALUE;
+        int hc = mcmtMem(arr,sr,sc+1,dr,dc,dp);
+        int vc = mcmtMem(arr,sr+1,sc,dr,dc,dp);
+        // System.out.println(sr + " " + sc);
+        dp[sr][sc] = Math.min(hc,vc) + arr[sr][sc];
+        return dp[sr][sc];
+    }
+
+    public static int mcmtTab(int[][] arr) {
+        int n = arr.length;
+        int m = arr[0].length;
+        int[][] dp = new int[n][m];
+        dp[n-1][m-1] = arr[n-1][m-1];
+
+        for(int i=n-1;i>=0;i--){
+            for(int j=m-1;j>=0;j--){
+                if(i==n-1 && j==m-1){
+                    dp[i][j] = arr[i][j];
+                    continue;
+                }
+                int hc = (j+1>=m) ? Integer.MAX_VALUE : dp[i][j+1];
+                int vc = (i+1>=n) ? Integer.MAX_VALUE : dp[i+1][j];
+                dp[i][j] = Math.min(hc, vc);
+                dp[i][j] += arr[i][j];
+            }
+        }
+
+        return dp[0][0];
+    }
+
+}
