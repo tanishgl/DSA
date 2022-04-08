@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		int[] values = new int[n];
+		for(int i=0;i<n;i++){
+			values[i] = in.nextInt();
+		}
+		int[] w = new int[n];
+		for(int i=0;i<n;i++){
+			w[i] = in.nextInt();
+		}
+		int cap = in.nextInt();
+		System.out.println(knapsack(values, w, cap));
+    }
+
+	public static int knapsack(int[] values, int[] w, int cap){
+		int n = cap + 1;
+		int[] prev = new int[n];
+		for(int i=1;i<=values.length;i++){
+			int[] curr = new int[n];
+			for(int j=1;j<=cap;j++){
+				int no = prev[j];
+				int yes = (j - w[i-1] >= 0) ? prev[j-w[i-1]] + values[i-1] : 0;
+				curr[j] = Math.max(no, yes);
+			}
+
+			for(int j=0;j<=cap;j++){
+				prev[j] = curr[j];
+			}
+		}
+
+		return prev[cap];
+	}
+}
