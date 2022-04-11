@@ -1,0 +1,50 @@
+import java.io.*;
+	import java.util.*;
+
+	public class Main {
+
+	    public static void main(String[] args) throws Exception {
+			Scanner in = new Scanner(System.in);
+			int n = in.nextInt();
+			int[] values = new int[n];
+			for(int i=0;i<n;i++){
+				values[i] = in.nextInt();
+			}
+			int[] w = new int[n];
+			for(int i=0;i<n;i++){
+				w[i] = in.nextInt();
+			}
+			int cap = in.nextInt();
+			System.out.println(knapsack1d(values,w,cap));
+	    }
+
+		public static int knapsack(int[] values, int[] w, int cap){
+			int[] prev = new int[cap+1];
+			for(int i=1;i<=w.length;i++){
+				int[] curr = new int[cap+1];
+				for(int j=0;j<=cap;j++){
+					int no = prev[j];
+					int yes = (j-w[i-1]>=0) ? curr[j-w[i-1]] + values[i-1] : 0;
+					curr[j] = Math.max(no, yes); 
+				}
+
+				for(int j=0;j<=cap;j++){
+					prev[j] = curr[j];
+				}
+			}
+
+			return prev[cap];
+		}
+
+		public static int knapsack1d(int[] values, int[] w, int cap){
+			int[] dp = new int[cap+1];
+			dp[0] = 0;
+			for(int i=1;i<=cap;i++){
+				for(int j=0;j<w.length;j++){
+					dp[i] =  (i - w[j] >= 0) ? Math.max(dp[i-w[j]] + values[j], dp[i]) : Math.max(0, dp[i]);
+				}
+			}
+			
+			return dp[cap];
+		}
+	}
