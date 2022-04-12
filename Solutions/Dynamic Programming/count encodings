@@ -71,7 +71,7 @@ public class Main {
             ch = str.charAt(i);
             dp[i] = (ch-'0'>=1 && ch-'0'<=9) ? dp[i+1] : 0;
             int x = Integer.parseInt(str.substring(i,i+2));
-            dp[i] += (x>=10 && x<=26) ? 1 : 0;
+            dp[i] += (x>=10 && x<=26) ? ( (i + 2 < n) ? dp[i+2] : 1) : 0;
         }
 
         return dp[0];
