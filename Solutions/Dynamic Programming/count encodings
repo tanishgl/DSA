@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        System.out.println(rec(str, str.length()-1));
+    }
+
+    public static int rec(String str, int idx){
+        if(idx<0){
+            return 1;
+        }
+        
+        int ans = 0;
+        char ch = str.charAt(idx);
+        if(ch-'0' >= 1 && ch-'0'<=9){
+            ans = rec(str, idx-1);
+        }
+
+        if(idx > 0){
+            int x = Integer.parseInt(str.substring(idx-1, idx+1));
+            if(x>=10 && x<=26){
+                ans += rec(str, idx-2);
+            }
+        }
+
+        return ans;
+        
+    }
+}
