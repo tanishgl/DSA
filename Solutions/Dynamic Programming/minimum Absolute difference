@@ -1,0 +1,36 @@
+public class Solution {
+    public int solve(int[] A) {
+        int total = 0;
+        for(int val : A){
+            total += val;
+        }
+
+        int[] dp = new int[total+1];
+        dp[0] = 1;
+
+        for(int i=1;i<=A.length;i++){
+            int[] curr = new int[total+1];
+            for(int j=0;j<=total;j++){
+                int no = dp[j];
+                int yes = (j - A[i-1] >=0 ) ? dp[j-A[i-1]] : 0;
+                curr[j] = no + yes;
+            }
+
+            for(int j=0;j<=total;j++){
+                dp[j] = curr[j];
+            }
+        }
+
+        int ans = 0;
+        int half = (total + 1) / 2;
+        for(int i=idx; i<=total; i++){
+            if(dp[i] != 0){
+                int s1 = i;
+                int s2 = total - s1;
+                return s1 - s2;
+            }
+        }
+
+        return 0;
+    }
+}
