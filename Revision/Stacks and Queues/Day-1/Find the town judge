@@ -1,0 +1,37 @@
+class Solution {
+    public int findJudge(int n, int[][] trust) {
+        Stack<Integer> st = new Stack<>();
+        for(int i=1;i<=n;i++){
+            st.push(i);
+        }
+        
+        int[][] grid = new int[n+1][n+1];
+        for(int i=0;i<trust.length;i++){
+            grid[trust[i][0]][trust[i][1]] = 1;
+        }
+        
+        while(st.size()>1){
+            int b = st.pop();
+            int a = st.pop();
+            
+            if(grid[a][b] == 1){
+                // a trusts b. a is not a town judge.
+                st.push(b);
+            } else {
+                st.push(a);
+            }
+        }
+        
+        for(int i=1;i<=n;i++){
+            if(i!=st.peek() && grid[i][st.peek()] == 0)
+                return -1;
+        }
+        
+        for(int i=1;i<=n;i++){
+            if(i!=st.peek() && grid[st.peek()][i] == 1)
+                return -1;
+        }
+        
+        return st.peek();
+    }
+}
