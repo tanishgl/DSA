@@ -1,0 +1,59 @@
+class MyStack 
+{
+    // class StackNode {
+    //     int data;
+    //     StackNode next;
+    //     StackNode(int a) {
+    //         data = a;
+    //         next = null;
+    //     }
+    // }   
+    StackNode top;
+    StackNode head;
+    
+    //Function to push an integer into the stack.
+    void push(int a) 
+    {
+        // Stack overflow will never come since it's dynamic.
+        StackNode new_node = new StackNode(a);
+        top = new_node;
+        if(head == null){
+            // Stack is empty.
+            head = new_node;
+        } else {
+            StackNode temp = head;
+            while(temp.next != null){
+                temp = temp.next;
+            }
+            temp.next = new_node;
+        }
+    }
+    
+    //Function to remove an item from top of the stack.
+    int pop() 
+    {
+        if(head == null){
+            // stack Underflow
+            return -1;
+        }
+        
+        int popped_val = top.data;
+        
+        if(head.next == null){
+            // For one-value stack
+            head = null;
+            return popped_val;
+        }
+        
+        StackNode prev = null, curr = head;
+        
+        while(curr.next != null){
+            prev = curr;
+            curr = curr.next;
+        }
+        
+        prev.next = null;
+        top = prev;
+        return popped_val;
+    }
+}
