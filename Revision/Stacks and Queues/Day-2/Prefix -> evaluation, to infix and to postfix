@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+
+    System.out.println(prefixEvaluation(exp));
+    prefixConversions(exp);
+ }
+ 
+ public static int prefixEvaluation(String exp){
+     Stack<Integer> operands = new Stack<>();
+     
+     for(int i=exp.length()-1;i>=0;i--){
+        char ch = exp.charAt(i);
+        if(ch >= '0' && ch <= '9'){
+            operands.push(ch-'0');
+        } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/'){
+            int a = operands.pop();
+            int b = operands.pop();
+            if(ch == '+'){
+                operands.push(a+b);
+            } else if (ch == '-'){
+                operands.push(a-b);
+            } else if (ch == '*'){
+                operands.push(a*b);
+            } else if (ch == '/'){
+                operands.push(a/b);
+            }
+        }
+     }
+     
+     return operands.peek();
+ }
+ 
+ public static void prefixConversions(String exp){
+    Stack<String> infix = new Stack<>();
+    Stack<String> postfix = new Stack<>();
+    
+    for(int i=exp.length()-1;i>=0;i--){
+        char ch = exp.charAt(i);
+        if(ch >= '0' && ch <= '9'){
+            infix.push(ch + "");
+            postfix.push(ch + "");
+        } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/'){
+            String a = infix.pop();
+            String b = infix.pop();
+            String inf = "(" + a + ch + b + ")";
+            infix.push(inf);
+            
+            a = postfix.pop();
+            b = postfix.pop();
+            String postf = a + b + ch;
+            postfix.push(postf);
+        }
+     }
+     
+     System.out.println(infix.peek());
+     System.out.println(postfix.peek());
+ }
+}
