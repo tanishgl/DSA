@@ -1,0 +1,18 @@
+public static void printMoves(int[] arr, int[] dp){
+        int i = 0;
+        
+        while(i < dp.length - 1){
+            // I will take one move. From all my possible landings, which landing would further cost me less moves. Those moves are stored in min.
+            int min = Integer.MAX_VALUE;
+            // Where would I prefer my landing.
+            int minIdx = i;
+            for(int j=1;j<=arr[i];j++){
+                if(i+j < dp.length && dp[i+j] < min){
+                    min = dp[i+j];
+                    minIdx = i + j;
+                }
+            }
+            System.out.println(i + " " + minIdx);
+            i = minIdx;
+        }
+    }
