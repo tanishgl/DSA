@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+        
+    public static long partitionKSubset(int n, int k, long[][] dp) {
+        if(n < k || k == 0) return 0l;
+        if(n == k) return 1l;
+
+        if(dp[n][k] != -1) return dp[n][k];
+        return dp[n][k] = k * partitionKSubset(n-1, k, dp) + partitionKSubset(n-1,k-1,dp);
+
+    }
+    
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int k = scn.nextInt();
+        
+        long[][] dp = new long[n+1][k+1];
+        for(int i=0;i<=n;i++){
+            Arrays.fill(dp[i], -1);
+        }
+        long res = partitionKSubset(n, k, dp);
+        System.out.println(dp[n][k]);
+    }
+}
