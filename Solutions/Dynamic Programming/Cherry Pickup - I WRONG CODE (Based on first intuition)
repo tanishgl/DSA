@@ -1,0 +1,92 @@
+class Solution {
+    public int cherryPickup(int[][] grid) {
+        int ans = 0;
+        int n = grid.length, m = grid[0].length;
+        int[][] dp = new int[n][m];
+        int[][] dir = new int[n][m];
+        
+        DPHelper(grid, dp, dir);
+        ans += dp[0][0];
+        clearance(grid, dir, dp[0][0]);
+        
+        int[][] temp = new int[n][m];
+        int rowIdx = 0;
+        for(int i=n-1;i>=0;i--){
+            int colIdx = 0;
+            for(int j=m-1;j>=0;j--){
+                temp[rowIdx][colIdx] = grid[i][j];
+                colIdx++;
+            }
+            rowIdx++;
+        }
+        
+        grid = temp;
+        
+        DPHelper(grid, dp, dir);
+        ans += dp[0][0];
+        return ans;
+    }
+    
+    public void display(int[][] grid){
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                System.out.print(grid[i][j] + "     ");
+            }
+            System.out.println();
+        }
+    }
+    
+    public void clearance(int[][] grid, int[][] dir, int cherries){
+        int n = grid.length, m = grid[0].length;
+        int r = 0, c = 0, x = cherries;
+        
+        while(x>0){
+            if(grid[r][c] == 1){
+                grid[r][c] = 0;
+                x--;
+            }
+            
+            if(dir[r][c] == 1){
+                // You went right.
+                c++;
+            } else {
+                // You went down.
+                r++;
+            }
+        }
+    }
+    
+    public void DPHelper(int[][] grid, int[][] dp, int[][] dir){
+        int n = grid.length, m = grid[0].length;
+        
+        for(int i=n-1;i>=0;i--){
+            for(int j=m-1;j>=0;j--){
+                if(i == n-1 && j == m-1){
+                    dp[i][j] = grid[i][j];
+                    dir[i][j] = 0;
+                    continue;
+                }
+                
+                if(grid[i][j] == -1){
+                    dp[i][j] = Integer.MIN_VALUE;
+                    dir[i][j] = 0;
+                    continue;
+                }
+                
+                int right = (j + 1 < m) ? dp[i][j+1] : Integer.MIN_VALUE;
+                int down = (i + 1 < n) ? dp[i+1][j] : Integer.MIN_VALUE;
+                
+                if (right == Integer.MIN_VALUE && down == Integer.MIN_VALUE){
+                    dp[i][j] = Integer.MIN_VALUE;
+                    dir[i][j] = 0;
+                } else if (right >= down) {
+                    dp[i][j] = right + grid[i][j];
+                    dir[i][j] = 1;
+                } else {
+                    dp[i][j] = down + grid[i][j];
+                    dir[i][j] = -1;
+                }
+            }
+        }
+    }
+}
