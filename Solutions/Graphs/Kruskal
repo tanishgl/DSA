@@ -1,0 +1,68 @@
+class Solution
+{
+    //Function to find sum of weights of edges of the Minimum Spanning Tree.
+    
+    public static class DSU {
+        int[] parent, rank;
+        
+        DSU(int n){
+            parent = new int[n];
+            rank = new int[n];
+            Arrays.fill(parent, -1);
+            Arrays.fill(rank, 1);
+        }
+        
+        public int find(int x){
+            if(parent[x] == -1) return x;
+            return parent[x] = find(parent[x]);
+        }
+        
+        public void union(int x, int y){
+            int px = find(x);
+            int py = find(y);
+            if(px == py) return;
+            
+            if(rank[px] >= rank[py]){
+                parent[py] = px;
+                rank[px] += rank[py];
+            } else {
+                parent[px] = py;
+                rank[py] += rank[px];
+            }
+        }
+    }
+    
+    public static class Edge {
+        int a, b, wt;
+        Edge(int a, int b, int wt){
+            this.a = a;
+            this.b = b;
+            this.wt = wt;
+        }
+        
+    }
+    
+    static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
+    {
+        // Add your code here
+        List<Edge> edges = new ArrayList<>();
+        for(int src = 0; src < adj.size(); src++){
+            for(ArrayList<Integer> nbr : adj.get(src)){
+                if(src > nbr.get(0))
+                    edges.add(new Edge(src, nbr.get(0), nbr.get(1)));
+            }   
+        }
+        
+        Collections.sort(edges, (a,b) -> a.wt - b.wt);
+        DSU sets = new DSU(V);
+        int cost = 0;
+        
+        for(Edge e : edges){
+            if(sets.find(e.a) == sets.find(e.b)) continue;
+            sets.union(e.a, e.b);
+            cost += e.wt;
+        }
+        
+        return cost;
+    }
+}
