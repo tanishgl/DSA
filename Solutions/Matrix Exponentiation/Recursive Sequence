@@ -1,0 +1,86 @@
+import java.util.*;
+import java.lang.*;
+ 
+/**
+ *
+ * @author Tanish
+ */
+class Main {
+    
+    public static int mod = 1000000000;
+ 
+    public static void main(String[] args) throws java.lang.Exception {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        while(t-->0){
+            solve(in);
+        }
+    }
+ 
+    public static void solve(Scanner sc){
+                /* Taking Input */
+		int k = sc.nextInt();
+		int[] B = new int[k];
+		for(int i=0;i<k;i++){
+			B[i] = sc.nextInt();
+		}
+		int[] C = new int[k];
+		for(int i=0;i<k;i++){
+			C[i] = sc.nextInt();
+		}
+		int n = sc.nextInt();
+                /* If n <= k */
+		int ans = 0;
+		if(n <= k){
+			ans = B[n-1];
+			System.out.println(ans);
+			return;
+		}
+                
+                /* T = Transition Matrix */
+		long[][] T = new long[k][k];
+		for(int i=0;i<k-1;i++){
+			T[i][i+1] = 1l;
+		}
+                int x = 0;
+		for(int i=k-1;i>=0;i--){
+			T[k-1][i] = C[x++];
+		}
+                /* res = [T] ^ (n-1) */
+		long[][] res = power(T, n - 1);
+		for(int i=0;i<k;i++){
+                    ans = (int)add(ans, mul(res[0][i], B[i], mod), mod);
+		}
+		System.out.println(ans);
+		return;
+	}
+    
+        public static long mul(long a, long b, int mod){
+            return (a*b) % mod;
+        }
+        
+        public static long add(long a, long b, int mod){
+            return (a + b) % mod;
+        }
+	
+	public static long[][] multiply(long[][] mat1, long[][] mat2){
+		int n = mat1.length, m = mat2[0].length;
+		long[][] res = new long[n][m];
+		for(int i=0;i<n;i++){
+			for(int j=0;j<m;j++){
+				for(int k=0;k<n;k++){
+					res[i][j] = add(res[i][j], mul(mat1[i][k], mat2[k][j], mod), mod);
+				}
+			}
+		}
+		
+		return res;
+	}
+	
+	public static long[][] power(long[][] mat, int n){
+		if(n <= 1) return mat;
+		if(n % 2 != 0) return multiply(power(mat, n-1), mat);
+		long[][] res = power(mat, n/2);
+		return multiply(res,res);
+	}
+}
