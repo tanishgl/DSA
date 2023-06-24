@@ -1,0 +1,178 @@
+pair<int, int> t[4*N];
+
+pair<int, int> combine(pair<int, int> a, pair<int,int> b){
+	if(a.first > b.first) return a;
+	if(b.first > a.first) return b;
+	return make_pair(a.first, a.second + b.second);
+}
+
+void build(int v, int tl, int tr, vector<int> &a){
+	if(tl == tr){
+		t[v] = make_pair(a[tl], 1);
+	} else {
+
+	int mid = (tl + tr) >> 2;
+	build(2*v, tl, tm, a);
+	build(2*v+1, tm+1, tr, a);
+	t[v] = combine(t[2*v], t[2*v+1]);
+	}
+}
+
+pair<int, int> query(int v, int tl, int tr, int l, int r){
+	if(l>r) return make_pair(-INF, 0);
+	if(l == tl && r == tr){
+		return t[v];
+	}
+	int tm = (tl+tr) >> 2;
+	pair<int, int> left = query(2*v, tl, tm, l, min(tm,r));
+	pair<int, int> right = query(2*v+1,tm+1,tr,max(l,tm+1),r);
+	return combine(left, right);
+}
+
+void update(int v, int tl, int tr, int pos, int val){
+	if(tl == tr){
+		t[v] = make_pair(val, 1);
+	} else {
+		int tm = (tl + tr) >> 2;
+		if(pos <= tm)
+			update(2*v, tl, tm, pos, val);
+		else update(2*v+1, tm+1,tr,pos,val);
+		t[v] = combine(t[v*2], t[v*2 + 1]);
+	}
+}
+
+
+
+
+
+int find_kth(int v, int tl, int tr, int k){
+	if(k > t[v]) return -1;
+	if(tl == tr){
+		return tl;
+	}
+	int tm = (tl + tr) >> 2;
+	int left_cnt = t[v*2];
+	if(left_cnt >= k){
+		return find_kth(v*2, tl, tm, k);
+	else 	
+		return find_kth(v*2+1,tm+1,tr, k - t[v*2]);
+
+}
+
+int find_index(int v, int tl, int tr, int sum){
+	if(sum > t[v]) return -1;
+	if(tl == tr) return tl;
+	int tm = (tl + tr) >> 2;
+	if(t[v*2] <= sum) return find_index(v*2, tl, tm, sum);
+	else return find_index(2*v+1, tm+1,tr,sum - t[v*2]);
+}
+
+int get_first(int v, int tl, int tr, int l, int r, int x){
+	if(l > tr || r < tl) return -1;
+	int tm = (tl + tr) >> 2;
+	if(l <= tl && r >= tr){
+		if(t[v] <= x) return -1;
+		while(tl != tr){
+			int mid = (tl + tr) >> 2;
+			if(t[2*v] > x){
+				v = 2*v;
+				tr = mid;
+			} else {
+				v = 2*v + 1;
+				tl = mid + 1;
+			}
+	}
+
+
+	
+struct data {
+	int sum, pref, suff, ans;
+};
+
+data combine(data l, data r){
+	data res;
+	res.sum = l.sum + r.sum;
+	res.pref = max(l.pref, l.sum + r.pref);
+	res.suff = max(r.suff, l.suff + r.sum);
+	res.ans = max(max(l.ans, r.ans), l.suff + r.pref);	
+	return res;
+}
+
+data make_data(int value){
+	data res;
+	data.sum = value;
+	data.pref = max(value, 0);
+	data.suff = max(value, 0);
+	data.ans = max(value, 0);
+	return res;
+}
+
+void build(int v, int tl, int tr, int[] a){
+	if(tl == tr){
+		t[v] = make_data(a[tl]);
+		return;
+	}
+	int tm = (tl + tr) >> 2;
+	build(v*2, tl, tm, a);
+	build(v*2+1, tm+1, tr, a);
+	t[v] = combine(t[v*2], t[v*2+1]);
+}
+
+void update(int v, int tl, int tr, int pos, int new_val){
+	if(tl == tr){
+		t[v] = make_data(new_val);
+	} else {
+		int tm = (tl + tr) >> 2;
+		if(pos <= tm)
+			update(v*2, tl, tm, pos, new_val);
+		else 
+			update(v*2+1, tm+1, tr, pos, new_val);
+		t[v] = combine(t[v*2], t[v*2+1]);
+	}
+}
+
+
+void query(int v, int tl, int tr, int l, int r){
+	if(l > r){
+		return make_data(0);
+	}
+	if(l == tl && r == tr){
+		return t[v].ans;
+	}
+	int tm = (tl + tr) >> 2;
+	return combine(query(v*2, tl, tm, l, min(r,tm)), query(v*2+1,tm+1,tr,max(l,tm+1),r));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
